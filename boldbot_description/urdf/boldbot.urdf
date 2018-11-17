@@ -150,4 +150,102 @@
     </visual>
   </link>
 
+  <!-- Left Leg -->
+  
+  <joint name="l_hip_yaw_joint" type="continuous">
+    <parent link="torso" />
+    <child link="l_hip_bracket" />
+    <origin rpy="0 0 0" xyz="-0.005 0.037 -0.1222" />
+    <axis xyz="0 0 -1" />
+  </joint>
+
+  <link name="l_hip_bracket">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <box size="0.02 0.02 0.02"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <joint name="l_hip_roll_joint" type="continuous">
+    <parent link="l_hip_bracket" />
+    <child link="l_buttock" />
+    <origin rpy="0 0 0" xyz="0 0 0" />
+    <axis xyz="-1 0 0" />
+  </joint>
+
+  <link name="l_buttock">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <box size="0.02 0.02 0.02"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <joint name="l_hip_pitch_joint" type="continuous">
+    <parent link="l_buttock" />
+    <child link="l_upper_leg" />
+    <origin rpy="0 0 0" xyz="0 0 0" />
+    <axis xyz="0 -1 0" />
+  </joint>
+
+  <link name="l_upper_leg">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 -0.07" />
+      <geometry>
+        <box size="0.04 0.04 0.14"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <joint name="l_knee_joint" type="continuous">
+    <parent link="l_upper_leg" />
+    <child link="l_lower_leg" />
+    <origin rpy="0 0 0" xyz="0 0 -0.14" />
+    <axis xyz="0 -1 0" />
+  </joint>
+
+  <link name="l_lower_leg">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 -0.07" />
+      <geometry>
+        <box size="0.04 0.04 0.14"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <joint name="l_ankle_pitch_joint" type="continuous">
+    <parent link="l_lower_leg" />
+    <child link="l_ankle" />
+    <origin rpy="0 0 0" xyz="0 0 -0.14" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <link name="l_ankle">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <box size="0.02 0.02 0.02"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <joint name="l_ankle_roll_joint" type="continuous">
+    <parent link="l_ankle" />
+    <child link="l_foot" />
+    <origin rpy="0 0 0" xyz="0 0 0" />
+    <axis xyz="1 0 0" />
+  </joint>
+
+  <link name="l_foot">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 -0.0335" />
+      <geometry>
+        <box size="0.12 0.05 0.02"/>
+      </geometry>
+    </visual>
+  </link>
+
 </robot>
