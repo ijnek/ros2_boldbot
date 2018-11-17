@@ -34,6 +34,12 @@ int main(int argc, char * argv[])
   msg->name.push_back("l_knee_joint");
   msg->name.push_back("l_ankle_pitch_joint");
   msg->name.push_back("l_ankle_roll_joint");
+  msg->name.push_back("r_hip_yaw_joint");
+  msg->name.push_back("r_hip_roll_joint");
+  msg->name.push_back("r_hip_pitch_joint");
+  msg->name.push_back("r_knee_joint");
+  msg->name.push_back("r_ankle_pitch_joint");
+  msg->name.push_back("r_ankle_roll_joint");
   for (size_t i = 0; i < msg->name.size(); ++i)
     msg->position.push_back(0.0);
 
