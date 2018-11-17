@@ -13,7 +13,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0" />
       <geometry>
-        <box size="0.1 0.16 0.101"/>
+        <box size="0.1 0.13 0.101"/>
       </geometry>
     </visual>
   </link>
@@ -50,6 +50,8 @@
     </visual>
   </link>
 
+  <!-- Left Arm -->
+  
   <joint name="l_shoulder_pitch_joint" type="continuous">
     <parent link="torso" />
     <child link="l_shoulder" />
@@ -91,6 +93,40 @@
 
   <link name="l_lower_arm">
     <visual>
+      <origin rpy="0 0 0" xyz="-0.016 0 -0.03" />
+      <geometry>
+        <box size="0.04 0.04 0.06"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- Right Arm -->
+
+  <joint name="r_shoulder_pitch_joint" type="continuous">
+    <parent link="torso" />
+    <child link="r_shoulder" />
+    <origin rpy="0 0 0" xyz="0 -0.082 0" />
+    <axis xyz="0 -1 0" />
+  </joint>
+
+  <link name="r_shoulder">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <box size="0.02 0.02 0.02"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <joint name="r_shoulder_roll_joint" type="continuous">
+    <parent link="r_shoulder" />
+    <child link="r_upper_arm" />
+    <origin rpy="0 0 0" xyz="0 0 -0.016" />
+    <axis xyz="-1 0 0" />
+  </joint>
+
+  <link name="r_upper_arm">
+    <visual>
       <origin rpy="0 0 0" xyz="0 0 -0.03" />
       <geometry>
         <box size="0.04 0.04 0.06"/>
@@ -98,5 +134,20 @@
     </visual>
   </link>
 
+  <joint name="r_elbow_joint" type="continuous">
+    <parent link="r_upper_arm" />
+    <child link="r_lower_arm" />
+    <origin rpy="0 0 0" xyz="0.016 0 -0.06" />
+    <axis xyz="0 -1 0" />
+  </joint>
+
+  <link name="r_lower_arm">
+    <visual>
+      <origin rpy="0 0 0" xyz="-0.016 0 -0.03" />
+      <geometry>
+        <box size="0.04 0.04 0.06"/>
+      </geometry>
+    </visual>
+  </link>
 
 </robot>
