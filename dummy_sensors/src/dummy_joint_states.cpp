@@ -22,8 +22,11 @@ int main(int argc, char * argv[])
   auto msg = std::make_shared<sensor_msgs::msg::JointState>();
   msg->name.push_back("head_pan_joint");
   msg->name.push_back("head_tilt_joint");
-  msg->position.push_back(0.0);
-  msg->position.push_back(0.0);
+  msg->name.push_back("l_shoulder_pitch_joint");
+  msg->name.push_back("l_shoulder_roll_joint");
+  msg->name.push_back("l_elbow_joint");
+  for (size_t i = 0; i < msg->name.size(); ++i)
+    msg->position.push_back(0.0);
 
   auto counter = 0.0;
   auto joint_value = 0.0;

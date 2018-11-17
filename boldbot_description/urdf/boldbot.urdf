@@ -49,4 +49,54 @@
       </geometry>
     </visual>
   </link>
+
+  <joint name="l_shoulder_pitch_joint" type="continuous">
+    <parent link="torso" />
+    <child link="l_shoulder" />
+    <origin rpy="0 0 0" xyz="0 0.082 0" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <link name="l_shoulder">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <box size="0.02 0.02 0.02"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <joint name="l_shoulder_roll_joint" type="continuous">
+    <parent link="l_shoulder" />
+    <child link="l_upper_arm" />
+    <origin rpy="0 0 0" xyz="0 0 -0.016" />
+    <axis xyz="-1 0 0" />
+  </joint>
+
+  <link name="l_upper_arm">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 -0.03" />
+      <geometry>
+        <box size="0.04 0.04 0.06"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <joint name="l_elbow_joint" type="continuous">
+    <parent link="l_upper_arm" />
+    <child link="l_lower_arm" />
+    <origin rpy="0 0 0" xyz="0.016 0 -0.06" />
+    <axis xyz="0 -1 0" />
+  </joint>
+
+  <link name="l_lower_arm">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 -0.03" />
+      <geometry>
+        <box size="0.04 0.04 0.06"/>
+      </geometry>
+    </visual>
+  </link>
+
+
 </robot>
