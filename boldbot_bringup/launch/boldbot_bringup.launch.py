@@ -11,4 +11,5 @@ def generate_launch_description():
     return LaunchDescription([
         Node(package='robot_state_publisher', node_executable='robot_state_publisher',
              output='screen', arguments=[urdf]),
+        Node(package='dummy_sensors', node_executable='dummy_joint_states', output='screen')
 ])
