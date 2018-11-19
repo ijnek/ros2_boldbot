@@ -20,26 +20,27 @@ int main(int argc, char * argv[])
   rclcpp::WallRate loop_rate(50);
 
   auto msg = std::make_shared<sensor_msgs::msg::JointState>();
-  msg->name.push_back("head_pan_joint");
-  msg->name.push_back("head_tilt_joint");
-  msg->name.push_back("l_shoulder_pitch_joint");
-  msg->name.push_back("l_shoulder_roll_joint");
-  msg->name.push_back("l_elbow_joint");
-  msg->name.push_back("r_shoulder_pitch_joint");
-  msg->name.push_back("r_shoulder_roll_joint");
-  msg->name.push_back("r_elbow_joint");
-  msg->name.push_back("l_hip_yaw_joint");
-  msg->name.push_back("l_hip_roll_joint");
-  msg->name.push_back("l_hip_pitch_joint");
-  msg->name.push_back("l_knee_joint");
-  msg->name.push_back("l_ankle_pitch_joint");
-  msg->name.push_back("l_ankle_roll_joint");
-  msg->name.push_back("r_hip_yaw_joint");
-  msg->name.push_back("r_hip_roll_joint");
-  msg->name.push_back("r_hip_pitch_joint");
-  msg->name.push_back("r_knee_joint");
-  msg->name.push_back("r_ankle_pitch_joint");
-  msg->name.push_back("r_ankle_roll_joint");
+  msg->name.push_back("shoulder-pitch-r");
+  msg->name.push_back("shoulder-pitch-l");
+  msg->name.push_back("shoulder-roll-r");	
+  msg->name.push_back("shoulder-roll-l");
+  msg->name.push_back("elbow-joint-r");	
+  msg->name.push_back("elbow-joint-l");
+  msg->name.push_back("hip-yaw-r");
+  msg->name.push_back("hip-yaw-l");
+  msg->name.push_back("hip-roll-r");	
+  msg->name.push_back("hip-roll-l");
+  msg->name.push_back("hip-pitch-r");	
+  msg->name.push_back("hip-pitch-l");
+  msg->name.push_back("knee-r");  
+  msg->name.push_back("knee-l");
+  msg->name.push_back("ankle-pitch-r");  
+  msg->name.push_back("ankle-pitch-l");
+  msg->name.push_back("ankle-roll-r");  
+  msg->name.push_back("ankle-roll-l");
+  msg->name.push_back("head-pan");
+  msg->name.push_back("head-tilt");
+  
   for (size_t i = 0; i < msg->name.size(); ++i)
     msg->position.push_back(0.0);
 
