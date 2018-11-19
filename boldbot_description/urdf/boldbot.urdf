@@ -18,7 +18,7 @@
     </visual>
   </link>
 
-  <joint name="head_pan_joint" type="continuous">
+  <joint name="head-pan" type="continuous">
     <parent link="torso" />
     <child link="neck" />
     <origin rpy="0 0 0" xyz="0 0 0.0505" />
@@ -34,7 +34,7 @@
     </visual>
   </link>
 
-  <joint name="head_tilt_joint" type="continuous">
+  <joint name="head-tilt" type="continuous">
     <parent link="neck" />
     <child link="head" />
     <origin rpy="0 0 0" xyz="0 0 0" />
@@ -52,14 +52,14 @@
 
   <!-- Left Arm -->
   
-  <joint name="l_shoulder_pitch_joint" type="continuous">
+  <joint name="shoulder-pitch-l" type="continuous">
     <parent link="torso" />
-    <child link="l_shoulder" />
+    <child link="shoulder-l" />
     <origin rpy="0 0 0" xyz="0 0.082 0" />
     <axis xyz="0 1 0" />
   </joint>
 
-  <link name="l_shoulder">
+  <link name="shoulder-l">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0" />
       <geometry>
@@ -68,14 +68,14 @@
     </visual>
   </link>
 
-  <joint name="l_shoulder_roll_joint" type="continuous">
-    <parent link="l_shoulder" />
-    <child link="l_upper_arm" />
+  <joint name="shoulder-roll-l" type="continuous">
+    <parent link="shoulder-l" />
+    <child link="upper-arm-l" />
     <origin rpy="0 0 0" xyz="0 0 -0.016" />
     <axis xyz="-1 0 0" />
   </joint>
 
-  <link name="l_upper_arm">
+  <link name="upper-arm-l">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 -0.03" />
       <geometry>
@@ -84,14 +84,14 @@
     </visual>
   </link>
 
-  <joint name="l_elbow_joint" type="continuous">
-    <parent link="l_upper_arm" />
-    <child link="l_lower_arm" />
+  <joint name="elbow-l" type="continuous">
+    <parent link="upper-arm-l" />
+    <child link="lower-arm-l" />
     <origin rpy="0 0 0" xyz="0.016 0 -0.06" />
     <axis xyz="0 -1 0" />
   </joint>
 
-  <link name="l_lower_arm">
+  <link name="lower-arm-l">
     <visual>
       <origin rpy="0 0 0" xyz="-0.016 0 -0.03" />
       <geometry>
@@ -102,14 +102,14 @@
 
   <!-- Right Arm -->
 
-  <joint name="r_shoulder_pitch_joint" type="continuous">
+  <joint name="shoulder-pitch-r" type="continuous">
     <parent link="torso" />
-    <child link="r_shoulder" />
+    <child link="shoulder-r" />
     <origin rpy="0 0 0" xyz="0 -0.082 0" />
     <axis xyz="0 -1 0" />
   </joint>
 
-  <link name="r_shoulder">
+  <link name="shoulder-r">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0" />
       <geometry>
@@ -118,14 +118,14 @@
     </visual>
   </link>
 
-  <joint name="r_shoulder_roll_joint" type="continuous">
-    <parent link="r_shoulder" />
-    <child link="r_upper_arm" />
+  <joint name="shoulder-roll-r" type="continuous">
+    <parent link="shoulder-r" />
+    <child link="upper-arm-r" />
     <origin rpy="0 0 0" xyz="0 0 -0.016" />
     <axis xyz="-1 0 0" />
   </joint>
 
-  <link name="r_upper_arm">
+  <link name="upper-arm-r">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 -0.03" />
       <geometry>
@@ -134,14 +134,14 @@
     </visual>
   </link>
 
-  <joint name="r_elbow_joint" type="continuous">
-    <parent link="r_upper_arm" />
-    <child link="r_lower_arm" />
+  <joint name="elbow-r" type="continuous">
+    <parent link="upper-arm-r" />
+    <child link="lower-arm-r" />
     <origin rpy="0 0 0" xyz="0.016 0 -0.06" />
     <axis xyz="0 -1 0" />
   </joint>
 
-  <link name="r_lower_arm">
+  <link name="lower-arm-r">
     <visual>
       <origin rpy="0 0 0" xyz="-0.016 0 -0.03" />
       <geometry>
@@ -152,14 +152,14 @@
 
   <!-- Left Leg -->
   
-  <joint name="l_hip_yaw_joint" type="continuous">
+  <joint name="hip-yaw-l" type="continuous">
     <parent link="torso" />
-    <child link="l_hip_bracket" />
+    <child link="hip-bracket-l" />
     <origin rpy="0 0 0" xyz="-0.005 0.037 -0.1222" />
     <axis xyz="0 0 -1" />
   </joint>
 
-  <link name="l_hip_bracket">
+  <link name="hip-bracket-l">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0" />
       <geometry>
@@ -168,14 +168,14 @@
     </visual>
   </link>
 
-  <joint name="l_hip_roll_joint" type="continuous">
-    <parent link="l_hip_bracket" />
-    <child link="l_buttock" />
+  <joint name="hip-roll-l" type="continuous">
+    <parent link="hip-bracket-l" />
+    <child link="buttock-l" />
     <origin rpy="0 0 0" xyz="0 0 0" />
     <axis xyz="-1 0 0" />
   </joint>
 
-  <link name="l_buttock">
+  <link name="buttock-l">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0" />
       <geometry>
@@ -184,14 +184,14 @@
     </visual>
   </link>
 
-  <joint name="l_hip_pitch_joint" type="continuous">
-    <parent link="l_buttock" />
-    <child link="l_upper_leg" />
+  <joint name="hip-pitch-l" type="continuous">
+    <parent link="buttock-l" />
+    <child link="upper-leg-l" />
     <origin rpy="0 0 0" xyz="0 0 0" />
     <axis xyz="0 -1 0" />
   </joint>
 
-  <link name="l_upper_leg">
+  <link name="upper-leg-l">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 -0.07" />
       <geometry>
@@ -200,14 +200,14 @@
     </visual>
   </link>
 
-  <joint name="l_knee_joint" type="continuous">
-    <parent link="l_upper_leg" />
-    <child link="l_lower_leg" />
+  <joint name="knee-l" type="continuous">
+    <parent link="upper-leg-l" />
+    <child link="lower-leg-l" />
     <origin rpy="0 0 0" xyz="0 0 -0.14" />
     <axis xyz="0 -1 0" />
   </joint>
 
-  <link name="l_lower_leg">
+  <link name="lower-leg-l">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 -0.07" />
       <geometry>
@@ -216,14 +216,14 @@
     </visual>
   </link>
 
-  <joint name="l_ankle_pitch_joint" type="continuous">
-    <parent link="l_lower_leg" />
-    <child link="l_ankle" />
+  <joint name="ankle-pitch-l" type="continuous">
+    <parent link="lower-leg-l" />
+    <child link="ankle-l" />
     <origin rpy="0 0 0" xyz="0 0 -0.14" />
     <axis xyz="0 1 0" />
   </joint>
 
-  <link name="l_ankle">
+  <link name="ankle-l">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0" />
       <geometry>
@@ -232,14 +232,14 @@
     </visual>
   </link>
 
-  <joint name="l_ankle_roll_joint" type="continuous">
-    <parent link="l_ankle" />
-    <child link="l_foot" />
+  <joint name="ankle-roll-l" type="continuous">
+    <parent link="ankle-l" />
+    <child link="foot-l" />
     <origin rpy="0 0 0" xyz="0 0 0" />
     <axis xyz="1 0 0" />
   </joint>
 
-  <link name="l_foot">
+  <link name="foot-l">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 -0.0335" />
       <geometry>
@@ -250,14 +250,14 @@
 
   <!-- Right Leg -->
   
-  <joint name="r_hip_yaw_joint" type="continuous">
+  <joint name="hip-yaw-r" type="continuous">
     <parent link="torso" />
-    <child link="r_hip_bracket" />
+    <child link="hip-bracket-r" />
     <origin rpy="0 0 0" xyz="-0.005 -0.037 -0.1222" />
     <axis xyz="0 0 -1" />
   </joint>
 
-  <link name="r_hip_bracket">
+  <link name="hip-bracket-r">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0" />
       <geometry>
@@ -266,14 +266,14 @@
     </visual>
   </link>
 
-  <joint name="r_hip_roll_joint" type="continuous">
-    <parent link="r_hip_bracket" />
-    <child link="r_buttock" />
+  <joint name="hip-roll-r" type="continuous">
+    <parent link="hip-bracket-r" />
+    <child link="buttock-r" />
     <origin rpy="0 0 0" xyz="0 0 0" />
     <axis xyz="-1 0 0" />
   </joint>
 
-  <link name="r_buttock">
+  <link name="buttock-r">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0" />
       <geometry>
@@ -282,14 +282,14 @@
     </visual>
   </link>
 
-  <joint name="r_hip_pitch_joint" type="continuous">
-    <parent link="r_buttock" />
-    <child link="r_upper_leg" />
+  <joint name="hip-pitch-r" type="continuous">
+    <parent link="buttock-r" />
+    <child link="upper-leg-r" />
     <origin rpy="0 0 0" xyz="0 0 0" />
     <axis xyz="0 1 0" />
   </joint>
 
-  <link name="r_upper_leg">
+  <link name="upper-leg-r">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 -0.07" />
       <geometry>
@@ -298,14 +298,14 @@
     </visual>
   </link>
 
-  <joint name="r_knee_joint" type="continuous">
-    <parent link="r_upper_leg" />
-    <child link="r_lower_leg" />
+  <joint name="knee-r" type="continuous">
+    <parent link="upper-leg-r" />
+    <child link="lower-leg-r" />
     <origin rpy="0 0 0" xyz="0 0 -0.14" />
     <axis xyz="0 1 0" />
   </joint>
 
-  <link name="r_lower_leg">
+  <link name="lower-leg-r">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 -0.07" />
       <geometry>
@@ -314,14 +314,14 @@
     </visual>
   </link>
 
-  <joint name="r_ankle_pitch_joint" type="continuous">
-    <parent link="r_lower_leg" />
-    <child link="r_ankle" />
+  <joint name="ankle-pitch-r" type="continuous">
+    <parent link="lower-leg-r" />
+    <child link="ankle-r" />
     <origin rpy="0 0 0" xyz="0 0 -0.14" />
     <axis xyz="0 -1 0" />
   </joint>
 
-  <link name="r_ankle">
+  <link name="ankle-r">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0" />
       <geometry>
@@ -330,14 +330,14 @@
     </visual>
   </link>
 
-  <joint name="r_ankle_roll_joint" type="continuous">
-    <parent link="r_ankle" />
-    <child link="r_foot" />
+  <joint name="ankle-roll-r" type="continuous">
+    <parent link="ankle-r" />
+    <child link="foot-r" />
     <origin rpy="0 0 0" xyz="0 0 0" />
     <axis xyz="1 0 0" />
   </joint>
 
-  <link name="r_foot">
+  <link name="foot-r">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 -0.0335" />
       <geometry>
