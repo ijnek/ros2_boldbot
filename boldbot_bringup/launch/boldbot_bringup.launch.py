@@ -10,5 +10,7 @@ def generate_launch_description():
                         'urdf', 'boldbot.urdf')
     return LaunchDescription([
         Node(package='robot_state_publisher', node_executable='robot_state_publisher',
-             output='screen', arguments=[urdf])
+             output='screen', arguments=[urdf]),
+        Node(package='cm730', node_executable='cm730_state',
+             output=None)
 ])
