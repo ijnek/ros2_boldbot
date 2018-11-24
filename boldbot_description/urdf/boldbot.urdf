@@ -37,8 +37,8 @@
   <joint name="head-tilt" type="continuous">
     <parent link="neck" />
     <child link="head" />
-    <origin rpy="0 0 0" xyz="0 0 0" />
-    <axis xyz="0 1 0" />
+    <origin rpy="0 0.785398163 0" xyz="0 0 0" />
+    <axis xyz="0 -1 0" />
   </joint>
 
   <link name="head">
@@ -71,7 +71,7 @@
   <joint name="shoulder-roll-l" type="continuous">
     <parent link="shoulder-l" />
     <child link="upper-arm-l" />
-    <origin rpy="0 0 0" xyz="0 0 -0.016" />
+    <origin rpy="0.785398163 0 0" xyz="0 0 -0.016" />
     <axis xyz="-1 0 0" />
   </joint>
 
@@ -87,8 +87,8 @@
   <joint name="elbow-l" type="continuous">
     <parent link="upper-arm-l" />
     <child link="lower-arm-l" />
-    <origin rpy="0 0 0" xyz="0.016 0 -0.06" />
-    <axis xyz="0 -1 0" />
+    <origin rpy="0 -1.570796327 0" xyz="0.016 0 -0.06" />
+    <axis xyz="0 1 0" />
   </joint>
 
   <link name="lower-arm-l">
@@ -121,7 +121,7 @@
   <joint name="shoulder-roll-r" type="continuous">
     <parent link="shoulder-r" />
     <child link="upper-arm-r" />
-    <origin rpy="0 0 0" xyz="0 0 -0.016" />
+    <origin rpy="-0.785398163 0 0" xyz="0 0 -0.016" />
     <axis xyz="-1 0 0" />
   </joint>
 
@@ -137,7 +137,7 @@
   <joint name="elbow-r" type="continuous">
     <parent link="upper-arm-r" />
     <child link="lower-arm-r" />
-    <origin rpy="0 0 0" xyz="0.016 0 -0.06" />
+    <origin rpy="0 -1.570796327 0" xyz="0.016 0 -0.06" />
     <axis xyz="0 -1 0" />
   </joint>
 
