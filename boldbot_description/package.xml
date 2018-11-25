@@ -7,7 +7,7 @@
     BoldBot description
   </description>
   <maintainer email="sgvandijk@gmail.com">Sander van Dijk</maintainer>
-  <license>Apache License 2.0</license>
+  <license>TODO: License declaration</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
