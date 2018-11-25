@@ -12,5 +12,8 @@ def generate_launch_description():
         Node(package='robot_state_publisher', node_executable='robot_state_publisher',
              output='screen', arguments=[urdf]),
         Node(package='cm730', node_executable='cm730_state',
+             output=None),
+        Node(package='usb_cam', node_executable='usb_cam_node',
              output=None)
+
 ])
