@@ -9,6 +9,6 @@
 
 # Check with rviz2
 
-When brought up, you can see the TF with `Add > By display type > TF`. In `Displays` you can chose `Global Options > Fixed Frame` either `torso` or `base_link`. 
+When brought up correctly, you can see the transformation with `Add > By display type (rviz_default _plugins) > TF`. Switch off `Show Axes` and `Show Arrows` in the `Display`-view under `TF`. Chose a base_link in the `Displays`-view under `Global Options > Fixed Frame`. Use either `torso` or `base_link`. 
 
-To see the actual BoldBot model and not just its links, `Add > rviz default plugins > RobotModel`. In the `Displays` tab then choose the file  `boldbot_description/urdf/boldbot.urdf`.
+To see the actual BoldBot model and not just its links, `Add > By display type (rviz_default _plugins) > RobotModel`. In the `Displays` tab then choose the file  `boldbot_description/urdf/boldbot.urdf` under `RobotModel > Description Source`.
