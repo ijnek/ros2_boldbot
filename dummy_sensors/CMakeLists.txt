@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(dummy_sensors)
+project(boldbot_dummy_sensors)
 
 # Default to C++14
 if(NOT CMAKE_CXX_STANDARD)
