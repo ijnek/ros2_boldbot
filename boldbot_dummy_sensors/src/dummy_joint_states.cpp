@@ -24,8 +24,8 @@ int main(int argc, char * argv[])
   msg->name.push_back("shoulder-pitch-l");
   msg->name.push_back("shoulder-roll-r");	
   msg->name.push_back("shoulder-roll-l");
-  msg->name.push_back("elbow-joint-r");	
-  msg->name.push_back("elbow-joint-l");
+  msg->name.push_back("elbow-r");	
+  msg->name.push_back("elbow-l");
   msg->name.push_back("hip-yaw-r");
   msg->name.push_back("hip-yaw-l");
   msg->name.push_back("hip-roll-r");	
