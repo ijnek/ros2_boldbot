@@ -14,6 +14,6 @@ def generate_launch_description():
         Node(package='cm730', node_executable='cm730_state',
              output=None),
         Node(package='usb_cam', node_executable='usb_cam_node',
-             output=None)
+             output='screen')
 
 ])
