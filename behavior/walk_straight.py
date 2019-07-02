@@ -14,6 +14,7 @@
 
 import rclpy
 
+from geometry_msgs.msg import Vector3
 from geometry_msgs.msg import Twist
 
 def main(args=None):
@@ -22,9 +23,18 @@ def main(args=None):
     node = rclpy.create_node('walking_straight_publisher')
     publisher = node.create_publisher(Twist, '/walking/command', 10)
 
+    linear = Vector3()
+    linear.x = 0.1
+    linear.y = 0.0
+    linear.z = 0.0
+    angular = Vector3()
+    angular.x = 0.0
+    angular.y = 0.0
+    angular.z = 0.0
+
     msg = Twist(
-        linear=(0,0,0),
-        angular=(0,0,0)
+        linear=linear,
+        angular=angular
     )
 
     def timer_callback():
