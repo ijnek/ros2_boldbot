@@ -20,7 +20,7 @@ from geometry_msgs.msg import Twist
 def main(args=None):
     rclpy.init(args=args)
 
-    node = rclpy.create_node('walking_straight_publisher')
+    node = rclpy.create_node('walking_straight')
     publisher = node.create_publisher(Twist, '/walking/command', 10)
 
     linear = Vector3()
