@@ -8,6 +8,7 @@ setup(
     packages=[],
     zip_safe=False,
     py_modules=[
+        'look_at_ball',
         'walk_straight'
     ],
     data_files=[],
@@ -19,7 +20,8 @@ setup(
     license='Apache License, Version 2.0',
     entry_points={
         'console_scripts': [
-            'walk_straight = walk_straight:main'
+            'walk_straight = walk_straight:main',
+            'look_at_ball = look_at_ball:main'
         ],
     },
 )
