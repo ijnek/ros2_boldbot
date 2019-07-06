@@ -1,0 +1,19 @@
+v4l2_camera:
+  ros__parameters:
+    output_encoding: yuv422
+    image_size: [320, 240]
+    backlight_compensation: 0
+    brightness: 128
+    contrast: 128
+    exposure_absolute: 300
+    exposure_auto: 1
+    exposure_auto_priority: False
+    focus_absolute: 0
+    focus_auto: False
+    gain: 0
+    power_line_frequency: 0
+    saturation: 128
+    sharpness: 128
+    white_balance_temperature: 3200
+    white_balance_temperature_auto: False
+    zoom_absolute: 100
