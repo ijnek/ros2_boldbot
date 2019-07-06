@@ -5,11 +5,7 @@ project(boldbot_bringup)
 find_package(ament_cmake REQUIRED)
 
 install(
-  DIRECTORY launch DESTINATION share/${PROJECT_NAME}
-)
-
-install(
-  DIRECTORY config DESTINATION share/${PROJECT_NAME}
+  DIRECTORY launch config DESTINATION share/${PROJECT_NAME}
 )
 
 if(BUILD_TESTING)
