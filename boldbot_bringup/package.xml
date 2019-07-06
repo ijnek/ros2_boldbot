@@ -13,10 +13,19 @@
 
   <exec_depend>ament_index_python</exec_depend>
   <exec_depend>launch</exec_depend>
-  <exec_depend>robot_state_publisher</exec_depend>
   <exec_depend>ros2run</exec_depend>
-  <exec_depend>cm730</exec_depend>>
-  <exec_depend>usb_cam</exec_depend>>
+  <exec_depend>cm730driver</exec_depend>
+  <exec_depend>cm730controller</exec_depend>
+  <exec_depend>mx_joint_controller</exec_depend>
+  <exec_depend>imu_publisher</exec_depend>
+  <exec_depend>button_publisher</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>v4l2_camera</exec_depend>
+  <exec_depend>tflite</exec_depend>
+  <exec_depend>bold_vision</exec_depend>
+  <exec_depend>behavior</exec_depend>
+  <exec_depend>motion_script</exec_depend>
+  <exec_depend>game_controller</exec_depend>
   
   <test_depend>ament_cmake_gtest</test_depend>
   <test_depend>ament_lint_auto</test_depend>
