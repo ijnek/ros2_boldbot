@@ -42,32 +42,42 @@ class LookAtBall(Node):
 
     def ball_position_callback(self, position):
         self._ball_position = position
-        
+
         if self._joint_states is None:
             self.get_logger().warn("No joint states yet")
             return
 
-        off_from_center = (
+        off_from_center_x = (
             position.x - 160
         )  # TODO: should get from camera info/parameters
-        if abs(off_from_center) <= 2:
+        off_from_center_y = (
+            position.y - 120
+        )  # TODO: should get from camera info/parameters
+
+        if abs(off_from_center_x) <= 4 and abs(off_from_center_y) <= 4:
             # Pretty well centered, don't move to prevent jitter
             return
 
-        # positive y in camera is negative radians in pan
-        gain = -0.001  # TODO: get from parameter
-        delta = gain * off_from_center
+        # positive x in camera is negative radians in pan
+        # positive y in camera is begative in radians in tilt
+        gain = 0.0005  # TODO: get from parameter
+        delta_pan = -gain * off_from_center_x
+        delta_tilt = -gain * off_from_center_y
 
         head_pan_idx = self._joint_states.name.index("head-pan")
+        head_tilt_idx = self._joint_states.name.index("head-tilt")
         head_pan = self._joint_states.position[head_pan_idx]
+        head_tilt = self._joint_states.position[head_tilt_idx]
 
-        target_head_pan = head_pan + delta
+        target_head_pan = head_pan + delta_pan
+        target_head_tilt = head_tilt + delta_tilt
+
         joint_commands = JointCommand()
-        joint_commands.name = ["head-pan"]
-        joint_commands.position = [target_head_pan]
+        joint_commands.name = ["head-pan", "head-tilt"]
+        joint_commands.position = [target_head_pan, target_head_tilt]
 
         self.get_logger().info(
-            f"Ball position from center: {off_from_center} - head pan: {head_pan}"
+            f"Ball position from center: {off_from_center_x} - head pan: {head_pan}"
         )
 
         self.joint_commands_pub.publish(joint_commands)
