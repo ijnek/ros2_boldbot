@@ -57,7 +57,7 @@ def generate_launch_description():
             Node(
                 package="v4l2_camera",
                 node_executable="v4l2_camera_node",
-                parameters=params,
+                parameters=[params],
                 output="screen",
                 on_exit=Shutdown(),
             ),
