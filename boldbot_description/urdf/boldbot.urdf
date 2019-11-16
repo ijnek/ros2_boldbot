@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
-<robot name="boldbot" xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <!-- dummy first link, directly connects with torse -->
+<robot name="boldbot">
+  <!-- dummy first link, directly connects with torso -->
   <link name="base_link" />
 
   <joint name="base_joint" type="fixed">
@@ -8,7 +8,7 @@
     <parent link="base_link"/>
     <origin xyz="0 0 0" rpy="0 0 0" />
   </joint>
-  
+
   <link name="torso">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 -0.035" />
@@ -16,6 +16,17 @@
         <box size="0.1 0.13 0.17"/>
       </geometry>
     </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 -0.035" />
+      <geometry>
+        <box size="0.1 0.13 0.17"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" />
+      <mass value="1"/>
+      <inertia ixx="1e-3"  ixy="0.0"  ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3" />
+    </inertial>
   </link>
 
   <joint name="head-pan" type="continuous">
@@ -32,6 +43,11 @@
         <box size="0.02 0.02 0.02"/>
       </geometry>
     </visual>
+    <inertial>
+      <origin xyz="0 0 0" />
+      <mass value="0.1"/>
+      <inertia ixx="1e-4"  ixy="0.0"  ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4" />
+    </inertial>
   </link>
 
   <joint name="head-tilt" type="continuous">
@@ -48,10 +64,21 @@
         <box size="0.03 0.03 0.06" />
       </geometry>
     </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0.03"/>
+      <geometry>
+        <box size="0.03 0.03 0.06" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" />
+      <mass value=".2"/>
+      <inertia ixx="1e-3"  ixy="0.0"  ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3" />
+    </inertial>
   </link>
 
   <!-- Left Arm -->
-  
+
   <joint name="shoulder-pitch-l" type="continuous">
     <parent link="torso" />
     <child link="shoulder-l" />
@@ -66,6 +93,11 @@
         <box size="0.02 0.02 0.02"/>
       </geometry>
     </visual>
+    <inertial>
+      <origin xyz="0 0 0" />
+      <mass value="0.1"/>
+      <inertia ixx="1e-4"  ixy="0.0"  ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4" />
+    </inertial>
   </link>
 
   <joint name="shoulder-roll-l" type="continuous">
@@ -82,6 +114,11 @@
         <box size="0.04 0.04 0.06"/>
       </geometry>
     </visual>
+    <inertial>
+      <origin xyz="0 0 0" />
+      <mass value="0.1"/>
+      <inertia ixx="1e-3"  ixy="0.0"  ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3" />
+    </inertial>
   </link>
 
   <joint name="elbow-l" type="continuous">
@@ -98,6 +135,11 @@
         <box size="0.04 0.04 0.06"/>
       </geometry>
     </visual>
+    <inertial>
+      <origin xyz="0 0 0" />
+      <mass value="0.1"/>
+      <inertia ixx="1e-3"  ixy="0.0"  ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3" />
+    </inertial>
   </link>
 
   <!-- Right Arm -->
@@ -116,6 +158,11 @@
         <box size="0.02 0.02 0.02"/>
       </geometry>
     </visual>
+    <inertial>
+      <origin xyz="0 0 0" />
+      <mass value="0.1"/>
+      <inertia ixx="1e-4"  ixy="0.0"  ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4" />
+    </inertial>
   </link>
 
   <joint name="shoulder-roll-r" type="continuous">
@@ -132,6 +179,11 @@
         <box size="0.04 0.04 0.06"/>
       </geometry>
     </visual>
+    <inertial>
+      <origin xyz="0 0 0" />
+      <mass value=".1"/>
+      <inertia ixx="1e-3"  ixy="0.0"  ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3" />
+    </inertial>
   </link>
 
   <joint name="elbow-r" type="continuous">
@@ -148,10 +200,15 @@
         <box size="0.04 0.04 0.06"/>
       </geometry>
     </visual>
+    <inertial>
+      <origin xyz="0 0 0" />
+      <mass value="0.1"/>
+      <inertia ixx="1e-3"  ixy="0.0"  ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3" />
+    </inertial>
   </link>
 
   <!-- Left Leg -->
-  
+
   <joint name="hip-yaw-l" type="continuous">
     <parent link="torso" />
     <child link="hip-bracket-l" />
@@ -166,6 +223,11 @@
         <box size="0.02 0.02 0.02"/>
       </geometry>
     </visual>
+    <inertial>
+      <origin xyz="0 0 0" />
+      <mass value=".1"/>
+      <inertia ixx="1e-4"  ixy="0.0"  ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4" />
+    </inertial>
   </link>
 
   <joint name="hip-roll-l" type="continuous">
@@ -182,6 +244,11 @@
         <box size="0.02 0.02 0.02"/>
       </geometry>
     </visual>
+    <inertial>
+      <origin xyz="0 0 0" />
+      <mass value="0.1"/>
+      <inertia ixx="1e-4"  ixy="0.0"  ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4" />
+    </inertial>
   </link>
 
   <joint name="hip-pitch-l" type="continuous">
@@ -198,6 +265,11 @@
         <box size="0.04 0.04 0.14"/>
       </geometry>
     </visual>
+    <inertial>
+      <origin xyz="0 0 0" />
+      <mass value="0.1"/>
+      <inertia ixx="1e-3"  ixy="0.0"  ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3" />
+    </inertial>
   </link>
 
   <joint name="knee-l" type="continuous">
@@ -214,6 +286,11 @@
         <box size="0.04 0.04 0.14"/>
       </geometry>
     </visual>
+    <inertial>
+      <origin xyz="0 0 0" />
+      <mass value="0.1"/>
+      <inertia ixx="1e-3"  ixy="0.0"  ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3" />
+    </inertial>
   </link>
 
   <joint name="ankle-pitch-l" type="continuous">
@@ -230,6 +307,11 @@
         <box size="0.02 0.02 0.02"/>
       </geometry>
     </visual>
+    <inertial>
+      <origin xyz="0 0 0" />
+      <mass value="0.1"/>
+      <inertia ixx="1e-4"  ixy="0.0"  ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4" />
+    </inertial>
   </link>
 
   <joint name="ankle-roll-l" type="continuous">
@@ -246,10 +328,15 @@
         <box size="0.12 0.05 0.02"/>
       </geometry>
     </visual>
+    <inertial>
+      <origin xyz="0 0 0" />
+      <mass value="0.1"/>
+      <inertia ixx="1e-3"  ixy="0.0"  ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3" />
+    </inertial>
   </link>
 
   <!-- Right Leg -->
-  
+
   <joint name="hip-yaw-r" type="continuous">
     <parent link="torso" />
     <child link="hip-bracket-r" />
@@ -264,6 +351,11 @@
         <box size="0.02 0.02 0.02"/>
       </geometry>
     </visual>
+    <inertial>
+      <origin xyz="0 0 0" />
+      <mass value="0.1"/>
+      <inertia ixx="1e-4"  ixy="0.0"  ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4" />
+    </inertial>
   </link>
 
   <joint name="hip-roll-r" type="continuous">
@@ -280,6 +372,11 @@
         <box size="0.02 0.02 0.02"/>
       </geometry>
     </visual>
+    <inertial>
+      <origin xyz="0 0 0" />
+      <mass value="0.1"/>
+      <inertia ixx="1e-4"  ixy="0.0"  ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4" />
+    </inertial>
   </link>
 
   <joint name="hip-pitch-r" type="continuous">
@@ -296,6 +393,11 @@
         <box size="0.04 0.04 0.14"/>
       </geometry>
     </visual>
+    <inertial>
+      <origin xyz="0 0 0" />
+      <mass value="0.1"/>
+      <inertia ixx="1e-3"  ixy="0.0"  ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3" />
+    </inertial>
   </link>
 
   <joint name="knee-r" type="continuous">
@@ -312,6 +414,11 @@
         <box size="0.04 0.04 0.14"/>
       </geometry>
     </visual>
+    <inertial>
+      <origin xyz="0 0 0" />
+      <mass value="0.1"/>
+      <inertia ixx="1e-3"  ixy="0.0"  ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3" />
+    </inertial>
   </link>
 
   <joint name="ankle-pitch-r" type="continuous">
@@ -328,6 +435,11 @@
         <box size="0.02 0.02 0.02"/>
       </geometry>
     </visual>
+    <inertial>
+      <origin xyz="0 0 0" />
+      <mass value="0.1"/>
+      <inertia ixx="1e-4"  ixy="0.0"  ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4" />
+    </inertial>
   </link>
 
   <joint name="ankle-roll-r" type="continuous">
@@ -344,6 +456,11 @@
         <box size="0.12 0.05 0.02"/>
       </geometry>
     </visual>
+    <inertial>
+      <origin xyz="0 0 0" />
+      <mass value="0.1"/>
+      <inertia ixx="1e-4"  ixy="0.0"  ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4" />
+    </inertial>
   </link>
 
 </robot>
