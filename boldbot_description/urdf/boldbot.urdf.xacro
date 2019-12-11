@@ -24,9 +24,9 @@
         <inertia ixx="0.00002292366"  ixy="0.0"  ixz="0.0" iyy="0.00001516566" iyz="0.0" izz="0.00002296632" />
       </inertial>
     </link>
-
     <gazebo reference="${name}">
-      <material>Gazebo/Grey</material>
+      <material>Gazebo/DarkGrey</material>
+      <selfCollide>true</selfCollide>
     </gazebo>
   </xacro:macro>
 
@@ -58,6 +58,10 @@
       <inertia ixx="1e-3"  ixy="0.0"  ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3" />
     </inertial>
   </link>
+  <gazebo reference="torso">
+    <material>Gazebo/Grey</material>
+    <selfCollide>true</selfCollide>
+  </gazebo>
 
   <joint name="torso-mx28-head-pan" type="fixed">
     <parent link="torso" />
@@ -124,6 +128,10 @@
       <inertia ixx="1e-3"  ixy="0.0"  ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3" />
     </inertial>
   </link>
+  <gazebo reference="head">
+    <material>Gazebo/Grey</material>
+    <selfCollide>true</selfCollide>
+  </gazebo>
 
   <!-- Arms -->
 
@@ -194,7 +202,7 @@
         </geometry>
       </visual>
       <collision>
-        <origin rpy="1.570796327 0 0" xyz="0.055 0.02 -0.02" />
+        <origin xyz="0.055 ${lr * 0.02} -0.02" rpy="${lr * 1.570796327} 0 0" />
         <geometry>
           <mesh filename="/home/sander/src/boldbot/boldbot_description/meshes/armcover.stl" scale="0.001 0.001 0.001"/>
         </geometry>
@@ -205,6 +213,10 @@
         <inertia ixx="1e-3"  ixy="0.0"  ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3" />
       </inertial>
     </link>
+    <gazebo reference="lower-arm-${side}">
+      <material>Gazebo/Grey</material>
+      <selfCollide>true</selfCollide>
+    </gazebo>
   </xacro:macro>
 
   <xacro:arm side="l"/>
@@ -212,306 +224,175 @@
 
   <!-- Left Leg -->
 
-  <joint name="hip-yaw-l" type="continuous">
-    <parent link="torso" />
-    <child link="hip-bracket-l" />
-    <origin rpy="0 0 0" xyz="-0.005 0.037 -0.1222" />
-    <axis xyz="0 0 -1" />
-    <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
-  </joint>
+  <xacro:macro name="leg" params="side">
+    <xacro:property name="lr" value="${1 if side == 'l' else -1}"/>
 
-  <link name="hip-bracket-l">
-    <visual>
+    <joint name="torso-mx28-hip-yaw-${side}" type="fixed">
+      <parent link="torso" />
+      <child link="mx28-hip-yaw-${side}" />
+      <origin xyz="0.018 ${lr * 0.037} -0.04" />
+    </joint>
+    
+    <xacro:mx28 name="mx28-hip-yaw-${side}" xyz="0 0 0" rpy="${lr * 3.141592654} 0 3.141592654"/>
+
+    <joint name="hip-yaw-${side}" type="continuous">
+      <parent link="mx28-hip-yaw-${side}" />
+      <child link="hip-bracket-${side}" />
       <origin rpy="0 0 0" xyz="0 0 0" />
-      <geometry>
-        <box size="0.02 0.02 0.02"/>
-      </geometry>
-    </visual>
-    <inertial>
-      <origin xyz="0 0 0" />
-      <mass value=".1"/>
-      <inertia ixx="1e-4"  ixy="0.0"  ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4" />
-    </inertial>
-  </link>
+      <axis xyz="0 0 -1" />
+      <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
+    </joint>
 
-  <joint name="hip-roll-l" type="continuous">
-    <parent link="hip-bracket-l" />
-    <child link="buttock-l" />
-    <origin rpy="0 0 0" xyz="0 0 0" />
-    <axis xyz="-1 0 0" />
-    <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
-  </joint>
+    <link name="hip-bracket-${side}">
+      <inertial>
+        <origin xyz="0 0 0" />
+        <mass value=".1"/>
+        <inertia ixx="1e-4"  ixy="0.0"  ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4" />
+      </inertial>
+    </link>
 
-  <link name="buttock-l">
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 0" />
-      <geometry>
-        <box size="0.02 0.02 0.02"/>
-      </geometry>
-    </visual>
-    <inertial>
-      <origin xyz="0 0 0" />
-      <mass value="0.1"/>
-      <inertia ixx="1e-4"  ixy="0.0"  ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4" />
-    </inertial>
-  </link>
+    <joint name="hip-roll-${side}" type="continuous">
+      <parent link="hip-bracket-${side}" />
+      <child link="mx28-hip-roll-${side}" />
+      <origin rpy="0 0 0" xyz="-0.05 0 -0.04" /> <!-- TODO: guessed -->
+      <axis xyz="-1 0 0" />
+      <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
+    </joint>
 
-  <joint name="hip-pitch-l" type="continuous">
-    <parent link="buttock-l" />
-    <child link="upper-leg-l" />
-    <origin rpy="0 0 0" xyz="0 0 0" />
-    <axis xyz="0 -1 0" />
-    <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
-  </joint>
+    <xacro:mx28 name="mx28-hip-roll-${side}" xyz="0 0 0" rpy="0 1.570796327 0"/>
 
-  <link name="upper-leg-l">
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 -0.07" />
-      <geometry>
-        <box size="0.04 0.04 0.14"/>
-      </geometry>
-    </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 -0.07" />
-      <geometry>
-        <box size="0.04 0.04 0.14"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <origin xyz="0 0 0" />
-      <mass value="0.1"/>
-      <inertia ixx="1e-3"  ixy="0.0"  ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3" />
-    </inertial>
-  </link>
+    <joint name="mx28-hip-roll-mx28-hip-pitch-${side}" type="fixed">
+      <parent link="mx28-hip-roll-${side}" />
+      <child link="mx28-hip-pitch-${side}" />
+      <origin xyz="0.05 0 0" rpy="0 0 0" />
+    </joint>
+    
+    <xacro:mx28 name="mx28-hip-pitch-${side}" xyz="0 0 0" rpy="1.570796327 1.570796327 0"/>
 
-  <joint name="knee-l" type="continuous">
-    <parent link="upper-leg-l" />
-    <child link="lower-leg-l" />
-    <origin rpy="0 0 0" xyz="0 0 -0.14" />
-    <axis xyz="0 -1 0" />
-    <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
-  </joint>
+    <joint name="mx28-hip-pitch-upper-leg-${side}" type="continuous">
+      <parent link="mx28-hip-pitch-${side}" />
+      <child link="upper-leg-${side}" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <axis xyz="0 -1 0" />
+      <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
+    </joint>
+    
+    <link name="upper-leg-${side}">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 1.570796327 0" />
+        <geometry>
+          <mesh filename="/home/sander/src/boldbot/boldbot_description/meshes/thigh.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 1.570796327 0" />
+        <geometry>
+          <mesh filename="/home/sander/src/boldbot/boldbot_description/meshes/thigh.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="0 0 0" />
+        <mass value="0.1"/>
+        <inertia ixx="1e-3"  ixy="0.0"  ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3" />
+      </inertial>
+    </link>
+    <gazebo reference="upper-leg-${side}">
+      <material>Gazebo/Grey</material>
+      <selfCollide>true</selfCollide>
+    </gazebo>
 
-  <link name="lower-leg-l">
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 -0.07" />
-      <geometry>
-        <box size="0.04 0.04 0.14"/>
-      </geometry>
-    </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 -0.07" />
-      <geometry>
-        <box size="0.04 0.04 0.14"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <origin xyz="0 0 0" />
-      <mass value="0.1"/>
-      <inertia ixx="1e-3"  ixy="0.0"  ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3" />
-    </inertial>
-  </link>
+    <joint name="upper-leg-mx28-knee-${side}" type="fixed">
+      <parent link="upper-leg-${side}" />
+      <child link="mx28-knee-${side}" />
+      <origin xyz="0 0 -0.143" rpy="0 0 0" />
+    </joint>
+    
+    <xacro:mx28 name="mx28-knee-${side}" xyz="0 0 0" rpy="1.570796327 -1.570796327 0"/>
+    
+    <joint name="mx28-knee-lower-leg-${side}" type="continuous">
+      <parent link="mx28-knee-${side}" />
+      <child link="lower-leg-${side}" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <axis xyz="0 -1 0" />
+      <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
+    </joint>
 
-  <joint name="ankle-pitch-l" type="continuous">
-    <parent link="lower-leg-l" />
-    <child link="ankle-l" />
-    <origin rpy="0 0 0" xyz="0 0 -0.14" />
-    <axis xyz="0 1 0" />
-    <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
-  </joint>
+    <link name="lower-leg-${side}">
+      <visual>
+        <origin xyz="0.0175 0 -0.019" rpy="3.141592654 1.570796327 0" />
+        <geometry>
+          <mesh filename="/home/sander/src/boldbot/boldbot_description/meshes/shin.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0.0175 0 -0.019" rpy="3.141592654 1.570796327 0" />
+        <geometry>
+          <mesh filename="/home/sander/src/boldbot/boldbot_description/meshes/shin.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="0 0 0" />
+        <mass value="0.1"/>
+        <inertia ixx="1e-3"  ixy="0.0"  ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3" />
+      </inertial>
+    </link>
+    <gazebo reference="lower-leg-${side}">
+      <material>Gazebo/Grey</material>
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    
+    <joint name="lower-leg-mx28-ankle-pitch-${side}" type="continuous">
+      <parent link="lower-leg-${side}" />
+      <child link="mx28-ankle-pitch-${side}" />
+      <origin xyz="0 0 -0.143" rpy="0 0 0" />
+      <axis xyz="0 -1 0" />
+      <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
+    </joint>
 
-  <link name="ankle-l">
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 0" />
-      <geometry>
-        <box size="0.02 0.02 0.02"/>
-      </geometry>
-    </visual>
-    <inertial>
-      <origin xyz="0 0 0" />
-      <mass value="0.1"/>
-      <inertia ixx="1e-4"  ixy="0.0"  ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4" />
-    </inertial>
-  </link>
+    <xacro:mx28 name="mx28-ankle-pitch-${side}" xyz="0 0 0" rpy="1.570796327 -1.570796327 0"/>
 
-  <joint name="ankle-roll-l" type="continuous">
-    <parent link="ankle-l" />
-    <child link="foot-l" />
-    <origin rpy="0 0 0" xyz="0 0 0" />
-    <axis xyz="1 0 0" />
-    <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
-  </joint>
+    <joint name="mx28-ankle-pitch-mx28-ankle-role-${side}" type="fixed">
+      <parent link="mx28-ankle-pitch-${side}" />
+      <child link="mx28-ankle-role-${side}" />
+      <origin xyz="-0.05 0 0" rpy="0 0 0" />
+    </joint>
 
-  <link name="foot-l">
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 -0.0335" />
-      <geometry>
-        <box size="0.12 0.05 0.02"/>
-      </geometry>
-    </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 -0.0335" />
-      <geometry>
-        <box size="0.12 0.05 0.02"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <origin xyz="0 0 0" />
-      <mass value="0.1"/>
-      <inertia ixx="1e-3"  ixy="0.0"  ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3" />
-    </inertial>
-  </link>
+    <xacro:mx28 name="mx28-ankle-role-${side}" xyz="0 0 0" rpy="3.141592654 -1.570796327 0"/>
 
-  <!-- Right Leg -->
+    <joint name="mx28-ankle-role-foot-${side}" type="continuous">
+      <parent link="mx28-ankle-role-${side}" />
+      <child link="foot-${side}" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <axis xyz="1 0 0" />
+      <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
+    </joint>
 
-  <joint name="hip-yaw-r" type="continuous">
-    <parent link="torso" />
-    <child link="hip-bracket-r" />
-    <origin rpy="0 0 0" xyz="-0.005 -0.037 -0.1222" />
-    <axis xyz="0 0 -1" />
-    <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
-  </joint>
+    <link name="foot-${side}">
+      <visual>
+        <origin xyz="0.05 ${lr * 0.01} -0.02" rpy="0 0 -1.570796327" /> <!-- TODO: guessed y offset -->
+        <geometry>
+          <mesh filename="/home/sander/src/boldbot/boldbot_description/meshes/nicefoot${side}.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0.05 ${lr * 0.01} -0.02" rpy="0 0 -1.570796327" /> <!-- TODO: guessed y offset -->
+        <geometry>
+          <mesh filename="/home/sander/src/boldbot/boldbot_description/meshes/nicefoot${side}.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="0 0 0" />
+        <mass value="0.1"/>
+        <inertia ixx="1e-3"  ixy="0.0"  ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3" />
+      </inertial>
+    </link>
+    <gazebo reference="foot-${side}">
+      <material>Gazebo/Grey</material>
+      <selfCollide>true</selfCollide>
+    </gazebo>
+  </xacro:macro>
 
-  <link name="hip-bracket-r">
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 0" />
-      <geometry>
-        <box size="0.02 0.02 0.02"/>
-      </geometry>
-    </visual>
-    <inertial>
-      <origin xyz="0 0 0" />
-      <mass value="0.1"/>
-      <inertia ixx="1e-4"  ixy="0.0"  ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4" />
-    </inertial>
-  </link>
-
-  <joint name="hip-roll-r" type="continuous">
-    <parent link="hip-bracket-r" />
-    <child link="buttock-r" />
-    <origin rpy="0 0 0" xyz="0 0 0" />
-    <axis xyz="-1 0 0" />
-    <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
-  </joint>
-
-  <link name="buttock-r">
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 0" />
-      <geometry>
-        <box size="0.02 0.02 0.02"/>
-      </geometry>
-    </visual>
-    <inertial>
-      <origin xyz="0 0 0" />
-      <mass value="0.1"/>
-      <inertia ixx="1e-4"  ixy="0.0"  ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4" />
-    </inertial>
-  </link>
-
-  <joint name="hip-pitch-r" type="continuous">
-    <parent link="buttock-r" />
-    <child link="upper-leg-r" />
-    <origin rpy="0 0 0" xyz="0 0 0" />
-    <axis xyz="0 1 0" />
-    <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
-  </joint>
-
-  <link name="upper-leg-r">
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 -0.07" />
-      <geometry>
-        <box size="0.04 0.04 0.14"/>
-      </geometry>
-    </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 -0.07" />
-      <geometry>
-        <box size="0.04 0.04 0.14"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <origin xyz="0 0 0" />
-      <mass value="0.1"/>
-      <inertia ixx="1e-3"  ixy="0.0"  ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3" />
-    </inertial>
-  </link>
-
-  <joint name="knee-r" type="continuous">
-    <parent link="upper-leg-r" />
-    <child link="lower-leg-r" />
-    <origin rpy="0 0 0" xyz="0 0 -0.14" />
-    <axis xyz="0 1 0" />
-    <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
-  </joint>
-
-  <link name="lower-leg-r">
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 -0.07" />
-      <geometry>
-        <box size="0.04 0.04 0.14"/>
-      </geometry>
-    </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 -0.07" />
-      <geometry>
-        <box size="0.04 0.04 0.14"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <origin xyz="0 0 0" />
-      <mass value="0.1"/>
-      <inertia ixx="1e-3"  ixy="0.0"  ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3" />
-    </inertial>
-  </link>
-
-  <joint name="ankle-pitch-r" type="continuous">
-    <parent link="lower-leg-r" />
-    <child link="ankle-r" />
-    <origin rpy="0 0 0" xyz="0 0 -0.14" />
-    <axis xyz="0 -1 0" />
-    <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
-  </joint>
-
-  <link name="ankle-r">
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 0" />
-      <geometry>
-        <box size="0.02 0.02 0.02"/>
-      </geometry>
-    </visual>
-    <inertial>
-      <origin xyz="0 0 0" />
-      <mass value="0.1"/>
-      <inertia ixx="1e-4"  ixy="0.0"  ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4" />
-    </inertial>
-  </link>
-
-  <joint name="ankle-roll-r" type="continuous">
-    <parent link="ankle-r" />
-    <child link="foot-r" />
-    <origin rpy="0 0 0" xyz="0 0 0" />
-    <axis xyz="1 0 0" />
-    <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
-  </joint>
-
-  <link name="foot-r">
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 -0.0335" />
-      <geometry>
-        <box size="0.12 0.05 0.02"/>
-      </geometry>
-    </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 -0.0335" />
-      <geometry>
-        <box size="0.12 0.05 0.02"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <origin xyz="0 0 0" />
-      <mass value="0.1"/>
-      <inertia ixx="1e-4"  ixy="0.0"  ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4" />
-    </inertial>
-  </link>
-
+  <xacro:leg side="l"/>
+  <xacro:leg side="r"/>
+  
 </robot>
