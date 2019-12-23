@@ -13,6 +13,8 @@ endif()
 
 find_package(gazebo REQUIRED)
 find_package(gazebo_ros REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(mx_joint_controller_msgs REQUIRED)
 
 add_library(boldbot_gazebo_plugin SHARED src/boldbot_gazebo_plugin.cpp)
 
@@ -21,7 +23,9 @@ target_include_directories(boldbot_gazebo_plugin PUBLIC
   $<INSTALL_INTERFACE:include>)
 
 ament_target_dependencies(boldbot_gazebo_plugin
-  "gazebo_ros")
+  "gazebo_ros"
+  "rclcpp"
+  "mx_joint_controller_msgs")
 
 install(TARGETS
   boldbot_gazebo_plugin

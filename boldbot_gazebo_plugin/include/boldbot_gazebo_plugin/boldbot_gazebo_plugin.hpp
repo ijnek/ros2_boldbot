@@ -16,22 +16,33 @@
 #define BOLDBOT_GAZEBO_PLUGIN__BOLDBOT_GAZEBO_PLUGIN_HPP_
 
 #include <gazebo/common/Plugin.hh>
+#include <rclcpp/rclcpp.hpp>
+#include <mx_joint_controller_msgs/msg/joint_command.hpp>
 
 namespace boldbot_gazebo_plugin
 {
-  
+
 class BoldbotGazeboPlugin : public gazebo::ModelPlugin
 {
 public:
   BoldbotGazeboPlugin();
-  
+
   void Load(gazebo::physics::ModelPtr model, sdf::ElementPtr sdf);
-  
+
 private:
+  void Update();
+
+  using JointCommand = mx_joint_controller_msgs::msg::JointCommand;
+
   std::string robot_namespace_;
 
   gazebo::physics::ModelPtr model_;
   gazebo::physics::WorldPtr world_;
+
+  gazebo::event::ConnectionPtr update_connection_;
+
+  rclcpp::Node::SharedPtr ros_node_;
+  rclcpp::Subscription<JointCommand>::SharedPtr joint_command_sub_;
 };
 
 }
