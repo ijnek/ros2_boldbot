@@ -396,7 +396,7 @@
   <xacro:leg side="r"/>
 
   <gazebo>
-    <plugin name="boldbot_gazebo" filename="/home/sander/install/boldbot_gazebo_plugin/lib/boldbot_gazebo_plugin/libboldbot_gazebo_plugin.so">
+    <plugin name="boldbot_gazebo" filename="libboldbot_gazebo_plugin.so">
     </plugin>
   </gazebo>
 
