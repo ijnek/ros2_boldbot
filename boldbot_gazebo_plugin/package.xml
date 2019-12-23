@@ -1,17 +1,18 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="2">
-  <name>boldbot_description</name>
+  <name>boldbot_gazebo_plugin</name>
   <version>0.1.0</version>
   <description>
-    BoldBot description
+    Plugin to interact with the BoldBot Gazebo model
   </description>
   <maintainer email="sgvandijk@gmail.com">Sander G. van Dijk</maintainer>
   <license>TODO: License declaration</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
-  <build_depend>xacro</build_depend>
 
+  <depend>gazebo_ros</depend>
+  
   <export>
     <build_type>ament_cmake</build_type>
   </export>
