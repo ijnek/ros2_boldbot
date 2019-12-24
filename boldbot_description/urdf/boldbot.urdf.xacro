@@ -269,7 +269,7 @@
     
     <xacro:mx28 name="mx28-hip-pitch-${side}" xyz="0 0 0" rpy="1.570796327 1.570796327 0"/>
 
-    <joint name="mx28-hip-pitch-upper-leg-${side}" type="continuous">
+    <joint name="hip-pitch-${side}" type="continuous">
       <parent link="mx28-hip-pitch-${side}" />
       <child link="upper-leg-${side}" />
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -309,7 +309,7 @@
     
     <xacro:mx28 name="mx28-knee-${side}" xyz="0 0 0" rpy="1.570796327 -1.570796327 0"/>
     
-    <joint name="mx28-knee-lower-leg-${side}" type="continuous">
+    <joint name="knee-${side}" type="continuous">
       <parent link="mx28-knee-${side}" />
       <child link="lower-leg-${side}" />
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -341,7 +341,7 @@
       <selfCollide>true</selfCollide>
     </gazebo>
     
-    <joint name="lower-leg-mx28-ankle-pitch-${side}" type="continuous">
+    <joint name="ankle-pitch-${side}" type="continuous">
       <parent link="lower-leg-${side}" />
       <child link="mx28-ankle-pitch-${side}" />
       <origin xyz="0 0 -0.143" rpy="0 0 0" />
@@ -359,7 +359,7 @@
 
     <xacro:mx28 name="mx28-ankle-roll-${side}" xyz="0 0 0" rpy="3.141592654 -1.570796327 0"/>
 
-    <joint name="mx28-ankle-roll-foot-${side}" type="continuous">
+    <joint name="ankle-roll-${side}" type="continuous">
       <parent link="mx28-ankle-roll-${side}" />
       <child link="foot-${side}" />
       <origin xyz="0 0 0" rpy="0 0 0" />

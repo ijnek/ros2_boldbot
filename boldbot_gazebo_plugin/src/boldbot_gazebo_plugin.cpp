@@ -13,6 +13,7 @@ BoldbotGazeboPlugin::BoldbotGazeboPlugin()
 
 void BoldbotGazeboPlugin::Load(gazebo::physics::ModelPtr model, sdf::ElementPtr sdf)
 {
+  // Get model and world references
   model_ = model;
   world_ = model_->GetWorld();
   auto physicsEngine = world_->Physics();
@@ -22,6 +23,7 @@ void BoldbotGazeboPlugin::Load(gazebo::physics::ModelPtr model, sdf::ElementPtr 
     robot_namespace_ = sdf->GetElement("robotNamespace")->Get<std::string>() + "/";
   }
 
+  // Set up ROS node and subscribers and publishers
   ros_node_ = rclcpp::Node::make_shared("bolbot_gazebo");
   RCLCPP_INFO(ros_node_->get_logger(), "Loading Boldbot Gazebo Plugin");
   joint_command_sub_ = ros_node_->create_subscription<JointCommand>(
@@ -32,6 +34,22 @@ void BoldbotGazeboPlugin::Load(gazebo::physics::ModelPtr model, sdf::ElementPtr 
     }
   );
 
+  // Find joints
+  auto allJoints = model_->GetJoints();
+  for (auto const & j : allJoints) {
+    if (j->GetType() == gazebo::physics::Joint::FIXED_JOINT) {
+      continue;
+    }
+
+    joints_[j->GetName()] = j;
+  }
+
+  RCLCPP_DEBUG(ros_node_->get_logger(), "Got joints:");
+  for (auto const & j : joints_) {
+    RCLCPP_DEBUG(ros_node_->get_logger(), j.first);
+  }
+
+  // Hook into simulation update loop
   update_connection_ = gazebo::event::Events::ConnectWorldUpdateBegin(
     std::bind(&BoldbotGazeboPlugin::Update, this));
 }

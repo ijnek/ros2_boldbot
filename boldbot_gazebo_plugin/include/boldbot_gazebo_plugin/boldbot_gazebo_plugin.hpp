@@ -41,6 +41,8 @@ private:
 
   gazebo::event::ConnectionPtr update_connection_;
 
+  std::map<std::string, gazebo::physics::JointPtr> joints_;
+
   rclcpp::Node::SharedPtr ros_node_;
   rclcpp::Subscription<JointCommand>::SharedPtr joint_command_sub_;
 };
