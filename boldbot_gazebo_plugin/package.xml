@@ -13,6 +13,7 @@
 
   <depend>gazebo_ros</depend>
   <depend>rclcpp</depend>
+  <depend>sensor_msgs</depend>
   <depend>mx_joint_controller_msgs</depend>
 
   <export>

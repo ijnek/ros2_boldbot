@@ -18,6 +18,7 @@
 #include <gazebo/common/PID.hh>
 #include <gazebo/common/Plugin.hh>
 #include <rclcpp/rclcpp.hpp>
+#include <sensor_msgs/msg/joint_state.hpp>
 #include <mx_joint_controller_msgs/msg/joint_command.hpp>
 
 namespace boldbot_gazebo_plugin
@@ -33,6 +34,7 @@ public:
 private:
   void Update();
 
+  using JointState = sensor_msgs::msg::JointState;
   using JointCommand = mx_joint_controller_msgs::msg::JointCommand;
 
   std::string robot_namespace_;
@@ -41,6 +43,8 @@ private:
   gazebo::physics::WorldPtr world_;
 
   gazebo::common::Time last_sim_time_;
+  gazebo::common::Time last_update_time_;
+  double update_period_ms_;
 
   gazebo::event::ConnectionPtr update_connection_;
 
@@ -48,6 +52,7 @@ private:
   std::map<std::string, double> joint_targets_;
 
   rclcpp::Node::SharedPtr ros_node_;
+  rclcpp::Publisher<JointState>::SharedPtr joint_state_pub_;
   rclcpp::Subscription<JointCommand>::SharedPtr joint_command_sub_;
 };
 

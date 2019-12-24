@@ -8,7 +8,9 @@ namespace boldbot_gazebo_plugin
 
 BoldbotGazeboPlugin::BoldbotGazeboPlugin()
 : robot_namespace_{""},
-  last_sim_time_{0}
+  last_sim_time_{0},
+  last_update_time_{0},
+  update_period_ms_{8}
 {
 }
 
@@ -27,12 +29,14 @@ void BoldbotGazeboPlugin::Load(gazebo::physics::ModelPtr model, sdf::ElementPtr 
   // Set up ROS node and subscribers and publishers
   ros_node_ = rclcpp::Node::make_shared("bolbot_gazebo");
   RCLCPP_INFO(ros_node_->get_logger(), "Loading Boldbot Gazebo Plugin");
+
+  joint_state_pub_ = ros_node_->create_publisher<JointState>("/joint_states", 10);
   joint_command_sub_ = ros_node_->create_subscription<JointCommand>(
     "/cm730/joint_commands",
     10,
     [ = ](JointCommand::SharedPtr cmd) {
-      for (int i = 0; i < cmd->name.size(); ++i) {
-	joint_targets_[cmd->name[i]] = cmd->position[i];
+      for (size_t i = 0; i < cmd->name.size(); ++i) {
+        joint_targets_[cmd->name[i]] = cmd->position[i];
       }
     }
   );
@@ -69,15 +73,31 @@ void BoldbotGazeboPlugin::Update()
   auto cur_time = world_->SimTime();
   if (last_sim_time_ == 0) {
     last_sim_time_ = cur_time;
+    last_update_time_ = cur_time;
     return;
   }
 
   auto dt = (cur_time - last_sim_time_).Double();
-  RCLCPP_DEBUG(ros_node_->get_logger(), std::to_string(dt));
+
+  // Publish joint states
+  auto update_dt = (cur_time - last_update_time_).Double();
+  if (update_dt * 1000 >= update_period_ms_) {
+    auto msg = JointState{};
+    msg.header.stamp = ros_node_->now();
+
+    for (auto & j : joints_) {
+      auto const & name = j.first;
+      auto & joint = j.second.first;
+      auto position = joint->Position();
+      msg.name.push_back(name);
+      msg.position.push_back(position);
+    }
+    joint_state_pub_->publish(msg);
+    last_update_time_ = cur_time;
+  }
 
   // Update joint PIDs
   for (auto & j : joints_) {
-    auto const & name = j.first;
     auto & joint = j.second.first;
     auto & pid = j.second.second;
 
