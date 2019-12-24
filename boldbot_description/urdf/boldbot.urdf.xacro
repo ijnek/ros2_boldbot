@@ -351,16 +351,16 @@
 
     <xacro:mx28 name="mx28-ankle-pitch-${side}" xyz="0 0 0" rpy="1.570796327 -1.570796327 0"/>
 
-    <joint name="mx28-ankle-pitch-mx28-ankle-role-${side}" type="fixed">
+    <joint name="mx28-ankle-pitch-mx28-ankle-roll-${side}" type="fixed">
       <parent link="mx28-ankle-pitch-${side}" />
-      <child link="mx28-ankle-role-${side}" />
+      <child link="mx28-ankle-roll-${side}" />
       <origin xyz="-0.05 0 0" rpy="0 0 0" />
     </joint>
 
-    <xacro:mx28 name="mx28-ankle-role-${side}" xyz="0 0 0" rpy="3.141592654 -1.570796327 0"/>
+    <xacro:mx28 name="mx28-ankle-roll-${side}" xyz="0 0 0" rpy="3.141592654 -1.570796327 0"/>
 
-    <joint name="mx28-ankle-role-foot-${side}" type="continuous">
-      <parent link="mx28-ankle-role-${side}" />
+    <joint name="mx28-ankle-roll-foot-${side}" type="continuous">
+      <parent link="mx28-ankle-roll-${side}" />
       <child link="foot-${side}" />
       <origin xyz="0 0 0" rpy="0 0 0" />
       <axis xyz="1 0 0" />
