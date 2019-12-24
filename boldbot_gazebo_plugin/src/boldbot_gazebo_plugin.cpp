@@ -31,7 +31,9 @@ void BoldbotGazeboPlugin::Load(gazebo::physics::ModelPtr model, sdf::ElementPtr 
     "/cm730/joint_commands",
     10,
     [ = ](JointCommand::SharedPtr cmd) {
-      RCLCPP_INFO(ros_node_->get_logger(), "Received joint commands!");
+      for (int i = 0; i < cmd->name.size(); ++i) {
+	joint_targets_[cmd->name[i]] = cmd->position[i];
+      }
     }
   );
 
