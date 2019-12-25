@@ -1,6 +1,16 @@
 <?xml version="1.0" ?>
 
 <robot name="boldbot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="inertial_cuboid" params="mass x_length y_length z_length">
+    <inertial>
+      <mass value="${mass}" />
+      <origin xyz="0 0 0" />
+      <inertia ixx="${(1/12) * mass * (y_length*y_length + z_length*z_length)}" ixy="0.0" ixz="0.0"
+	       iyy="${(1/12) * mass * (x_length*x_length + z_length*z_length)}" iyz="0.0"
+	       izz="${(1/12) * mass * (x_length*x_length + y_length*y_length)}" />
+    </inertial>
+  </xacro:macro>
+
   <xacro:macro name="mx28" params="name xyz rpy">
     <link name="${name}">
       <visual>
@@ -18,11 +28,7 @@
 	  <mesh filename="package://boldbot_description/meshes/mx28.stl" scale="0.001 0.001 0.001" />
 	</geometry>
       </collision>
-      <inertial>
-	<origin xyz="${xyz}" rpy="${rpy}" />
-	<mass value="0.072"/>
-	<inertia ixx="0.00002292366"  ixy="0.0"  ixz="0.0" iyy="0.00001516566" iyz="0.0" izz="0.00002296632" />
-      </inertial>
+      <xacro:inertial_cuboid mass="0.077" x_length="0.0506" y_length="0.0356" z_length="0.0355" />
     </link>
     <gazebo reference="${name}">
       <material>Gazebo/DarkGrey</material>
@@ -52,11 +58,7 @@
 	<box size="0.1 0.109 0.045"/>
       </geometry>
     </collision>
-    <inertial>
-      <origin xyz="0 0 0" />
-      <mass value="0.1"/>
-      <inertia ixx="1e-3"  ixy="0.0"  ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3" />
-    </inertial>
+    <xacro:inertial_cuboid mass="0.31" x_length="0.1" y_length="0.109" z_length="0.045"/>
   </link>
   <gazebo reference="torso">
     <material>Gazebo/Grey</material>
