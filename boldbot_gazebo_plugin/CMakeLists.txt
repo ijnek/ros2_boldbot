@@ -31,7 +31,7 @@ ament_target_dependencies(boldbot_gazebo_plugin
 
 install(TARGETS
   boldbot_gazebo_plugin
-  DESTINATION lib/${PROJECT_NAME})
+  DESTINATION share/${PROJECT_NAME})
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
