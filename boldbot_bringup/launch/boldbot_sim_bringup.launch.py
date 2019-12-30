@@ -1,9 +1,9 @@
 import os
 
-from ament_index_python.packages import get_package_prefix
+from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import ExecuteProcess
-
+from launch_ros.actions import Node
 from scripts import GazeboRosPaths
 
 
@@ -16,8 +16,9 @@ def generate_launch_description():
         "GAZEBO_RESOURCE_PATH": media_path,
     }
 
-    print(env)
-
+    urdf_prefix = get_package_share_directory("boldbot_description")
+    urdf_file = os.path.join(urdf_prefix, "boldbot.urdf")
+    print(urdf_file)
     return LaunchDescription(
         [
             ExecuteProcess(
@@ -31,6 +32,23 @@ def generate_launch_description():
                 ],
                 output="screen",
                 additional_env=env,
-            )
+            ),
+            Node(
+                package="gazebo_ros",
+                node_executable="spawn_entity.py",
+                arguments=[
+                    "-entity",
+                    "boldbot",
+                    "-x",
+                    "0",
+                    "-y",
+                    "0",
+                    "-z",
+                    ".6",
+                    "-b",
+                    "-file",
+                    urdf_file,
+                ],
+            ),
         ]
     )
