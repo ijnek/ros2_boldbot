@@ -18,9 +18,10 @@ This repository provides a suite of packages to work with the BoldBot robot:
 
 ## Real robot
 
-Run the following command on the robot after:
+Run the following command on the robot after building (at least) all
+packages up to `boldbot_bringup` (and sourcing the workspace):
 
-    ros2 launch boldbot_bringup boldbot_bringup.launch.py
+	ros2 launch boldbot_bringup boldbot_bringup.launch.py
 
 This will bring up a node to communicate with the CM730 (and the
 motors), and the camera. Any further nodes you can run locally to
@@ -28,34 +29,28 @@ communicate through the network, or also on the robot if available.
 
 ## Gazebo simulation
 
-To run a simulation of the robot, follow these steps:
+To run a simulation of the robot, build all packages up to
+`boldbot_bringup` (and source the workspace), and then run the
+following:
 
-1. Set the `GAZEBO_MODEL_PATH` environment variable so Gazebo can find
-   all necessary resources:
+	ros2 launch boldbot_bringup boldbot_sim_bringup.launch.py
 
-        export GAZEBO_MODEL_PATH=$(ros2 pkg prefix boldbot_description)/share
+This launches Gazebo and spawns the Boldbot model, including a plugin
+that provides the topics to interact with it and a robot state
+publisher, so you can see it in Rviz.
 
-2. Run Gazebo with the ROS factory library loaded, which opens
-   services to make it possible to load models from ROS:
+These topics to interact with the robot are the same as used on the
+real robot, so you can run regular behaviour nodes to control it. Try
+for instance:
 
-        gazebo -s libgazebo_ros_factory.so
+	ros2 run motion_script play sit-down
 
-3. Now spawn the robot in another terminal:
-
-        ros2 run gazebo_ros spawn_entity.py -b \
-            -entity boldbot \
-            -file $(ros2 pkg prefix boldbot_description)/share/boldbot_description/boldbot.urdf \
-            -x 0 -y 0 -z .6
-
-    The `-b` flag keeps the process alive ('bound' to Gazebo) and
-    causes the model to be removed when this process is aborted.
-    
 ## Dummy robot
 
 Alternatively, you can launch a dummy boldbot (locally or on the
 robot):
 
-`ros2 launch boldbot_bringup boldbot_bringup_dummy.launch.py`
+	ros2 launch boldbot_bringup boldbot_bringup_dummy.launch.py
 
 # Check with rviz2
 
