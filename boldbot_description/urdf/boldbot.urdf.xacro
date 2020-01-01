@@ -16,7 +16,7 @@
       <visual>
 	<origin xyz="${xyz}" rpy="${rpy}" />
 	<geometry>
-	  <mesh filename="package://meshes/mx28.stl" scale="0.001 0.001 0.001" />
+	  <mesh filename="package://boldbot_description/meshes/mx28b.stl" scale="0.001 0.001 0.001" />
 	</geometry>
 	<material name="DarkGrey">
 	  <color rgba="0.20 0.20 0.20 1.0"/>
@@ -25,7 +25,7 @@
       <collision>
 	<origin xyz="${xyz}" rpy="${rpy}" />
 	<geometry>
-	  <mesh filename="package://meshes/mx28.stl" scale="0.001 0.001 0.001" />
+	  <mesh filename="package://boldbot_description/meshes/mx28b.stl" scale="0.001 0.001 0.001" />
 	</geometry>
       </collision>
       <xacro:inertial_cuboid mass="0.077" x_length="0.0506" y_length="0.0356" z_length="0.0355" />
@@ -200,13 +200,13 @@
       <visual>
 	<origin xyz="0.055 ${lr * 0.02} -0.02" rpy="${lr * 1.570796327} 0 0" />
 	<geometry>
-	  <mesh filename="package://meshes/armcover.stl" scale="0.001 0.001 0.001"/>
+	  <mesh filename="package://boldbot_description/meshes/armcoverb.stl" scale="0.001 0.001 0.001"/>
 	</geometry>
       </visual>
       <collision>
 	<origin xyz="0.055 ${lr * 0.02} -0.02" rpy="${lr * 1.570796327} 0 0" />
 	<geometry>
-	  <mesh filename="package://meshes/armcover.stl" scale="0.001 0.001 0.001"/>
+	  <mesh filename="package://boldbot_description/meshes/armcoverb.stl" scale="0.001 0.001 0.001"/>
 	</geometry>
       </collision>
       <inertial>
@@ -283,13 +283,13 @@
       <visual>
 	<origin xyz="0 0 0" rpy="0 1.570796327 0" />
 	<geometry>
-	  <mesh filename="package://meshes/thigh.stl" scale="0.001 0.001 0.001"/>
+	  <mesh filename="package://boldbot_description/meshes/thighb.stl" scale="0.001 0.001 0.001"/>
 	</geometry>
       </visual>
       <collision>
 	<origin xyz="0 0 0" rpy="0 1.570796327 0" />
 	<geometry>
-	  <mesh filename="package://meshes/thigh.stl" scale="0.001 0.001 0.001"/>
+	  <mesh filename="package://boldbot_description/meshes/thighb.stl" scale="0.001 0.001 0.001"/>
 	</geometry>
       </collision>
       <inertial>
@@ -323,13 +323,13 @@
       <visual>
 	<origin xyz="0.0175 0 -0.019" rpy="3.141592654 1.570796327 0" />
 	<geometry>
-	  <mesh filename="package://meshes/shin.stl" scale="0.001 0.001 0.001"/>
+	  <mesh filename="package://boldbot_description/meshes/shinb.stl" scale="0.001 0.001 0.001"/>
 	</geometry>
       </visual>
       <collision>
 	<origin xyz="0.0175 0 -0.019" rpy="3.141592654 1.570796327 0" />
 	<geometry>
-	  <mesh filename="package://meshes/shin.stl" scale="0.001 0.001 0.001"/>
+	  <mesh filename="package://boldbot_description/meshes/shinb.stl" scale="0.001 0.001 0.001"/>
 	</geometry>
       </collision>
       <inertial>
@@ -373,13 +373,13 @@
       <visual>
 	<origin xyz="0.05 ${lr * 0.01} -0.02" rpy="0 0 -1.570796327" /> <!-- TODO: guessed y offset -->
 	<geometry>
-	  <mesh filename="package://meshes/nicefoot${side}.stl" scale="0.001 0.001 0.001"/>
+	  <mesh filename="package://boldbot_description/meshes/nicefoot${side}b.stl" scale="0.001 0.001 0.001"/>
 	</geometry>
       </visual>
       <collision>
 	<origin xyz="0.05 ${lr * 0.01} -0.02" rpy="0 0 -1.570796327" /> <!-- TODO: guessed y offset -->
 	<geometry>
-	  <mesh filename="package://meshes/nicefoot${side}.stl" scale="0.001 0.001 0.001"/>
+	  <mesh filename="package://boldbot_description/meshes/nicefoot${side}b.stl" scale="0.001 0.001 0.001"/>
 	</geometry>
       </collision>
       <inertial>

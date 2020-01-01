@@ -17,14 +17,13 @@ def generate_launch_description():
     }
 
     urdf_prefix = get_package_share_directory("boldbot_description")
-    urdf_file = os.path.join(urdf_prefix, "boldbot.urdf")
-    print(urdf_file)
+    urdf_file = os.path.join(urdf_prefix, "urdf", "boldbot.urdf")
+
     return LaunchDescription(
         [
             ExecuteProcess(
                 cmd=[
                     "gazebo",
-                    "--verbose",
                     "-s",
                     "libgazebo_ros_init.so",
                     "-s",
