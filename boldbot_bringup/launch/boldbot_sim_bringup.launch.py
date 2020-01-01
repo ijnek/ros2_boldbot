@@ -49,5 +49,11 @@ def generate_launch_description():
                     urdf_file,
                 ],
             ),
+            Node(
+                package="robot_state_publisher",
+                node_executable="robot_state_publisher",
+                output="screen",
+                arguments=[urdf_file],
+            ),
         ]
     )
