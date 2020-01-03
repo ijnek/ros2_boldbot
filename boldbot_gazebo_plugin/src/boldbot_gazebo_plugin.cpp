@@ -2,6 +2,7 @@
 
 #include <gazebo/physics/physics.hh>
 #include <iostream>
+#include <gazebo_ros/node.hpp>
 
 namespace boldbot_gazebo_plugin
 {
@@ -27,7 +28,7 @@ void BoldbotGazeboPlugin::Load(gazebo::physics::ModelPtr model, sdf::ElementPtr 
   }
 
   // Set up ROS node and subscribers and publishers
-  ros_node_ = rclcpp::Node::make_shared("bolbot_gazebo");
+  ros_node_ = gazebo_ros::Node::Get(sdf);
   RCLCPP_INFO(ros_node_->get_logger(), "Loading Boldbot Gazebo Plugin");
 
   joint_state_pub_ = ros_node_->create_publisher<JointState>("/joint_states", 10);
@@ -108,8 +109,6 @@ void BoldbotGazeboPlugin::Update()
   }
 
   last_sim_time_ = cur_time;
-
-  rclcpp::spin_some(ros_node_);
 }
 
 GZ_REGISTER_MODEL_PLUGIN(BoldbotGazeboPlugin)
