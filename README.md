@@ -67,6 +67,11 @@ either `torso` or `base_link`.
 ## Use BoldBot model
 
 To see the actual BoldBot model and not just its links, `Add > By
-display type (rviz_default _plugins) > RobotModel`. In the `Displays`
-tab then choose the file `boldbot_description/urdf/boldbot.urdf` under
-`RobotModel > Description Source`.
+display type (rviz_default _plugins) > RobotModel`. You then have two options 
+to display the robot using the `Displays` tab under `RobotModel`:
+
+  1. - under `Description Source`: choose `Topic`
+     - under `Description Topic` select `/robot_description`, or
+  2. - under `Description Source`: choose `File` 
+     - under `Description File`: select 
+       `install/boldbot_description/share/boldbot_description/urdf/boldbot.urdf` 
