@@ -32,19 +32,19 @@
   <xacro:macro name="mx28" params="name xyz rpy">
     <link name="${name}">
       <visual>
-	<origin xyz="${xyz}" rpy="${rpy}" />
-	<geometry>
-	  <mesh filename="package://boldbot_description/meshes/mx28b.stl" scale="0.001 0.001 0.001" />
-	</geometry>
-	<material name="DarkGrey">
-	  <color rgba="0.20 0.20 0.20 1.0"/>
-	</material>
+        <origin xyz="${xyz}" rpy="${rpy}" />
+        <geometry>
+          <mesh filename="package://boldbot_description/meshes/mx28b.stl" scale="0.001 0.001 0.001" />
+        </geometry>
+        <material name="DarkGrey">
+          <color rgba="0.20 0.20 0.20 1.0"/>
+        </material>
       </visual>
       <collision>
-	<origin xyz="${xyz}" rpy="${rpy}" />
-	<geometry>
-	  <mesh filename="package://boldbot_description/meshes/mx28b.stl" scale="0.001 0.001 0.001" />
-	</geometry>
+        <origin xyz="${xyz}" rpy="${rpy}" />
+        <geometry>
+          <mesh filename="package://boldbot_description/meshes/mx28b.stl" scale="0.001 0.001 0.001" />
+        </geometry>
       </collision>
       <xacro:inertial_cuboid mass="0.077" x_length="0.0506" y_length="0.0356" z_length="0.0355" />
     </link>
@@ -67,13 +67,13 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0" />
       <geometry>
-	<box size="0.1 0.109 0.045"/>
+        <box size="0.1 0.109 0.045"/>
       </geometry>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0" />
       <geometry>
-	<box size="0.1 0.109 0.045"/>
+        <box size="0.1 0.109 0.045"/>
       </geometry>
     </collision>
     <xacro:inertial_cuboid mass="0.31" x_length="0.1" y_length="0.109" z_length="0.045"/>
@@ -103,7 +103,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0.03" />
       <geometry>
-	<box size="0.01 0.01 0.01"/>
+        <box size="0.01 0.01 0.01"/>
       </geometry>
     </visual>
     <inertial>
@@ -133,13 +133,13 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-	<box size="0.05 0.1 0.04" />
+        <box size="0.05 0.1 0.04" />
       </geometry>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-	<box size="0.05 0.1 0.04" />
+        <box size="0.05 0.1 0.04" />
       </geometry>
     </collision>
     <inertial>
@@ -176,15 +176,15 @@
 
     <link name="shoulder-${side}">
       <visual>
-	<origin rpy="0 0 0" xyz="0 ${lr * 0.021} -0.008" />
-	<geometry>
-	  <box size="0.01 0.01 0.01"/>
-	</geometry>
+        <origin rpy="0 0 0" xyz="0 ${lr * 0.021} -0.008" />
+        <geometry>
+          <box size="0.01 0.01 0.01"/>
+        </geometry>
       </visual>
       <inertial>
-	<origin xyz="0 0 0" />
-	<mass value="0.1"/>
-	<inertia ixx="1e-4"  ixy="0.0"  ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4" />
+        <origin xyz="0 0 0" />
+        <xacro:xmass value="0.1"/>
+        <inertia ixx="1e-4"  ixy="0.0"  ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4" />
       </inertial>
     </link>
 
@@ -216,21 +216,21 @@
 
     <link name="lower-arm-${side}">
       <visual>
-	<origin xyz="0.055 ${lr * 0.02} -0.02" rpy="${lr * 1.570796327} 0 0" />
-	<geometry>
-	  <mesh filename="package://boldbot_description/meshes/armcoverb.stl" scale="0.001 0.001 0.001"/>
-	</geometry>
+        <origin xyz="0.055 ${lr * 0.02} -0.02" rpy="${lr * 1.570796327} 0 0" />
+        <geometry>
+          <mesh filename="package://boldbot_description/meshes/armcoverb.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
       </visual>
       <collision>
-	<origin xyz="0.055 ${lr * 0.02} -0.02" rpy="${lr * 1.570796327} 0 0" />
-	<geometry>
-	  <mesh filename="package://boldbot_description/meshes/armcoverb.stl" scale="0.001 0.001 0.001"/>
-	</geometry>
+        <origin xyz="0.055 ${lr * 0.02} -0.02" rpy="${lr * 1.570796327} 0 0" />
+        <geometry>
+          <mesh filename="package://boldbot_description/meshes/armcoverb.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
       </collision>
       <inertial>
-	<origin xyz="0 0 0" />
-	<mass value="0.1"/>
-	<inertia ixx="1e-3"  ixy="0.0"  ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3" />
+        <origin xyz="0 0 0" />
+        <xacro:xmass value="0.1"/>
+        <inertia ixx="1e-3"  ixy="0.0"  ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3" />
       </inertial>
     </link>
     <gazebo reference="lower-arm-${side}">
@@ -242,7 +242,7 @@
   <xacro:arm side="l"/>
   <xacro:arm side="r"/>
 
-  <!-- Left Leg -->
+  <!-- Legs -->
 
   <xacro:macro name="leg" params="side">
     <xacro:property name="lr" value="${1 if side == 'l' else -1}"/>
@@ -265,9 +265,9 @@
 
     <link name="hip-bracket-${side}">
       <inertial>
-	<origin xyz="0 0 0" />
-	<mass value=".1"/>
-	<inertia ixx="1e-4"  ixy="0.0"  ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4" />
+        <origin xyz="0 0 0" />
+        <xacro:xmass value=".1"/>
+        <inertia ixx="1e-4"  ixy="0.0"  ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4" />
       </inertial>
     </link>
 
@@ -299,21 +299,21 @@
 
     <link name="upper-leg-${side}">
       <visual>
-	<origin xyz="0 0 0" rpy="0 1.570796327 0" />
-	<geometry>
-	  <mesh filename="package://boldbot_description/meshes/thighb.stl" scale="0.001 0.001 0.001"/>
-	</geometry>
+        <origin xyz="0 0 0" rpy="0 1.570796327 0" />
+        <geometry>
+          <mesh filename="package://boldbot_description/meshes/thighb.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
       </visual>
       <collision>
-	<origin xyz="0 0 0" rpy="0 1.570796327 0" />
-	<geometry>
-	  <mesh filename="package://boldbot_description/meshes/thighb.stl" scale="0.001 0.001 0.001"/>
-	</geometry>
+        <origin xyz="0 0 0" rpy="0 1.570796327 0" />
+        <geometry>
+          <mesh filename="package://boldbot_description/meshes/thighb.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
       </collision>
       <inertial>
-	<origin xyz="0 0 0" />
-	<mass value="0.1"/>
-	<inertia ixx="1e-3"  ixy="0.0"  ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3" />
+        <origin xyz="0 0 0" />
+        <xacro:xmass value="0.1"/>
+        <inertia ixx="1e-3"  ixy="0.0"  ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3" />
       </inertial>
     </link>
     <gazebo reference="upper-leg-${side}">
@@ -339,16 +339,16 @@
 
     <link name="lower-leg-${side}">
       <visual>
-	<origin xyz="0.0175 0 -0.019" rpy="3.141592654 1.570796327 0" />
-	<geometry>
-	  <mesh filename="package://boldbot_description/meshes/shinb.stl" scale="0.001 0.001 0.001"/>
-	</geometry>
+        <origin xyz="0.0175 0 -0.019" rpy="3.141592654 1.570796327 0" />
+        <geometry>
+          <mesh filename="package://boldbot_description/meshes/shinb.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
       </visual>
       <collision>
-	<origin xyz="0.0175 0 -0.019" rpy="3.141592654 1.570796327 0" />
-	<geometry>
-	  <mesh filename="package://boldbot_description/meshes/shinb.stl" scale="0.001 0.001 0.001"/>
-	</geometry>
+        <origin xyz="0.0175 0 -0.019" rpy="3.141592654 1.570796327 0" />
+        <geometry>
+          <mesh filename="package://boldbot_description/meshes/shinb.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
       </collision>
       <inertial>
 	<origin xyz="0 0 0" />
@@ -389,21 +389,21 @@
 
     <link name="foot-${side}">
       <visual>
-	<origin xyz="0.05 ${lr * 0.01} -0.02" rpy="0 0 -1.570796327" /> <!-- TODO: guessed y offset -->
-	<geometry>
-	  <mesh filename="package://boldbot_description/meshes/nicefoot${side}b.stl" scale="0.001 0.001 0.001"/>
-	</geometry>
+        <origin xyz="0.05 ${lr * 0.01} -0.02" rpy="0 0 -1.570796327" /> <!-- TODO: guessed y offset -->
+        <geometry>
+          <mesh filename="package://boldbot_description/meshes/nicefoot${side}b.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
       </visual>
       <collision>
-	<origin xyz="0.05 ${lr * 0.01} -0.02" rpy="0 0 -1.570796327" /> <!-- TODO: guessed y offset -->
-	<geometry>
-	  <mesh filename="package://boldbot_description/meshes/nicefoot${side}b.stl" scale="0.001 0.001 0.001"/>
-	</geometry>
+        <origin xyz="0.05 ${lr * 0.01} -0.02" rpy="0 0 -1.570796327" /> <!-- TODO: guessed y offset -->
+        <geometry>
+          <mesh filename="package://boldbot_description/meshes/nicefoot${side}b.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
       </collision>
       <inertial>
-	<origin xyz="0 0 0" />
-	<mass value="0.1"/>
-	<inertia ixx="1e-3"  ixy="0.0"  ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3" />
+        <origin xyz="0 0 0" />
+        <xacro:xmass value="0.1"/>
+        <inertia ixx="1e-3"  ixy="0.0"  ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3" />
       </inertial>
     </link>
     <gazebo reference="foot-${side}">
@@ -424,32 +424,32 @@
     <sensor name='camera' type='camera'>
       <pose>0 0 0 0 0 0</pose>
       <camera name='__default__'>
-	<horizontal_fov>1.012300</horizontal_fov>
-	<image>
-	  <width>640</width>
-	  <height>480</height>
-	</image>
-	<clip>
-	  <near>0.001000</near>
-	  <far>100.000000</far>
-	</clip>
+        <horizontal_fov>1.012300</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+        </image>
+        <clip>
+          <near>0.001000</near>
+          <far>100.000000</far>
+        </clip>
       </camera>
       <always_on>1</always_on>
       <update_rate>30</update_rate>
       <visualize>true</visualize>
       <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
-	<alwaysOn>true</alwaysOn>
-	<updateRate>30</updateRate>
-	<cameraName>darwin/camera</cameraName>
-	<imageTopicName>image_raw</imageTopicName>
-	<cameraInfoTopicName>camera_info</cameraInfoTopicName>
-	<frameName>camera_link</frameName>
-	<hackBaseline>0.07</hackBaseline>
-	<distortionK1>0.0</distortionK1>
-	<distortionK2>0.0</distortionK2>
-	<distortionK3>0.0</distortionK3>
-	<distortionT1>0.0</distortionT1>
-	<distortionT2>0.0</distortionT2>
+        <alwaysOn>true</alwaysOn>
+        <updateRate>30</updateRate>
+        <cameraName>darwin/camera</cameraName>
+        <imageTopicName>image_raw</imageTopicName>
+        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+        <frameName>camera_link</frameName>
+        <hackBaseline>0.07</hackBaseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
       </plugin>
     </sensor>
   </gazebo>
@@ -462,11 +462,11 @@
       <!-- <visualize>true</visualize> -->
       <topic>__default_topic__</topic>
       <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
-	<ros>
-	  <argument>~/out:=/imu/data_raw</argument>
-	</ros>
-	<bodyName>torso</bodyName>
-	<gaussianNoise>0.0</gaussianNoise>
+        <ros>
+          <argument>~/out:=/imu/data_raw</argument>
+        </ros>
+        <bodyName>torso</bodyName>
+        <gaussianNoise>0.0</gaussianNoise>
       </plugin>
       <pose>0 0 0 0 0 0</pose>
     </sensor>
