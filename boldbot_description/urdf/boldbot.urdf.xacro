@@ -1,7 +1,11 @@
 <?xml version="1.0" ?>
 
 <robot name="boldbot" xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <xacro:macro name="inertial_cuboid" params="mass x_length y_length z_length">
+  <!-- PLA: 1.24 g/cm^3 -->
+  <xacro:property name="filament_density_full" value="1240" />
+  <xacro:property name="infill" value=".5" />
+  <xacro:property name="filament_density" value="${filament_density_full * infill}" />
+
   <xacro:macro name="xmass" params="value"><mass value="${value}" /></xacro:macro>
   <!-- <xacro:macro name="xmass" params="value"><mass value="1" /></xacro:macro> -->
 
