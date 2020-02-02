@@ -2,14 +2,28 @@
 
 <robot name="boldbot" xmlns:xacro="http://www.ros.org/wiki/xacro">
   <xacro:macro name="inertial_cuboid" params="mass x_length y_length z_length">
+  <xacro:macro name="xmass" params="value"><mass value="${value}" /></xacro:macro>
+  <!-- <xacro:macro name="xmass" params="value"><mass value="1" /></xacro:macro> -->
+
+  <xacro:macro name="inertial_cuboid" params="mass xyz x_length y_length z_length">
     <inertial>
-      <mass value="${mass}" />
-      <origin xyz="0 0 0" />
-      <inertia ixx="${(1/12) * mass * (y_length*y_length + z_length*z_length)}" ixy="0.0" ixz="0.0"
-	       iyy="${(1/12) * mass * (x_length*x_length + z_length*z_length)}" iyz="0.0"
-	       izz="${(1/12) * mass * (x_length*x_length + y_length*y_length)}" />
+      <xacro:xmass value="${mass}" />
+      <origin xyz="${xyz}" />
+      <inertia ixx="${mass * (y_length*y_length + z_length*z_length) / 12}" ixy="0.0" ixz="0.0"
+               iyy="${mass * (x_length*x_length + z_length*z_length) / 12}" iyz="0.0"
+               izz="${mass * (x_length*x_length + y_length*y_length) / 12}" />
     </inertial>
   </xacro:macro>
+
+  <!-- <xacro:macro name="inertial_cuboid" params="mass xyz x_length y_length z_length"> -->
+  <!--   <inertial> -->
+  <!--     <xacro:xmass value="1" /> -->
+  <!--     <origin xyz="${xyz}" /> -->
+  <!--     <inertia ixx="${1 * (y_length*y_length + z_length*z_length) / 12}" ixy="0.0" ixz="0.0" -->
+  <!--              iyy="${1 * (x_length*x_length + z_length*z_length) / 12}" iyz="0.0" -->
+  <!--              izz="${1 * (x_length*x_length + y_length*y_length) / 12}" /> -->
+  <!--   </inertial> -->
+  <!-- </xacro:macro> -->
 
   <xacro:macro name="mx28" params="name xyz rpy">
     <link name="${name}">
