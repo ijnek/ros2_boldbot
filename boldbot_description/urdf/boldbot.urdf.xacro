@@ -13,7 +13,7 @@
   <xacro:macro name="inertial_cuboid" params="mass xyz rpy x_length y_length z_length">
     <inertial>
       <xacro:xmass value="${mass}" />
-      <origin rpy="0 0 0" xyz="${xyz}"/>
+      <origin rpy="${rpy}" xyz="${xyz}"/>
       <inertia ixx="${mass * (y_length*y_length + z_length*z_length) / 12}" ixy="0.0" ixz="0.0"
                iyy="${mass * (x_length*x_length + z_length*z_length) / 12}" iyz="0.0"
                izz="${mass * (x_length*x_length + y_length*y_length) / 12}" />
@@ -30,10 +30,10 @@
   <!--   </inertial> -->
   <!-- </xacro:macro> -->
 
-  <xacro:macro name="mx28" params="name">
+  <xacro:macro name="mx28" params="name x y z rpy">
     <link name="${name}">
       <visual>
-        <origin xyz="0 0 0" rpy="0 0 0" />
+        <origin xyz="${x} ${y} ${z}" rpy="${rpy}" />
         <geometry>
           <mesh filename="package://boldbot_description/meshes/mx28b.stl" scale="0.001 0.001 0.001" />
         </geometry>
@@ -42,12 +42,12 @@
         </material>
       </visual>
       <collision>
-        <origin xyz="0 0 0" rpy="0 0 0" />
+        <origin xyz="${x} ${y} ${z}" rpy="${rpy}" />
         <geometry>
           <mesh filename="package://boldbot_description/meshes/mx28b.stl" scale="0.001 0.001 0.001" />
         </geometry>
       </collision>
-      <xacro:inertial_cuboid mass="0.077" xyz="0.0105 0 0" rpy="0 0 0" x_length="0.0506" y_length="0.0356" z_length="0.0355" />
+      <xacro:inertial_cuboid mass="0.077" xyz="${x + 0.0105} ${y} ${z}" rpy="${rpy}" x_length="0.0506" y_length="0.0356" z_length="0.0355" />
     </link>
     <gazebo reference="${name}">
       <material>Gazebo/DarkGrey</material>
