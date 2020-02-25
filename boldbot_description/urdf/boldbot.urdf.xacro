@@ -388,7 +388,7 @@
     <joint name="ankle-pitch-${side}" type="revolute">
       <parent link="lower-leg-${side}" />
       <child link="mx28-ankle-pitch-${side}" />
-      <origin xyz="-0.143 0 0" rpy="0 0 0" />
+      <origin xyz="-0.143 0 0" rpy="${pi} 0 0" />
       <axis xyz="0 0 1" />
       <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
       <dynamics damping="${damping}" friction="${friction}" />
@@ -399,7 +399,7 @@
     <joint name="mx28-ankle-pitch-mx28-ankle-roll-${side}" type="fixed">
       <parent link="mx28-ankle-pitch-${side}" />
       <child link="mx28-ankle-roll-${side}" />
-      <origin xyz="0 ${lr * 0.05} 0" rpy="${lr * pi / 2} 0 0" />
+      <origin xyz="0 ${-lr * 0.05} 0" rpy="${-lr * pi / 2} 0 0" />
     </joint>
 
     <xacro:mx28 name="mx28-ankle-roll-${side}" x="0" y="0" z="0" rpy="0 0 0"/>
