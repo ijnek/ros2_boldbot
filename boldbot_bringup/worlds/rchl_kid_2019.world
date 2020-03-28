@@ -7,6 +7,15 @@
     <include>
       <uri>model://sun</uri>
     </include>
+
+    <light name="spotlight" type="spot">
+      <pose>0 0 10  0 0 0</pose>
+      <spot>
+        <inner_angle>0.6</inner_angle>
+        <outer_angle>2.0</outer_angle>
+        <falloff>1.0</falloff>
+      </spot>
+    </light>
     
     <model name="field">
       <pose>0 0 0.01  0 0 0</pose>
