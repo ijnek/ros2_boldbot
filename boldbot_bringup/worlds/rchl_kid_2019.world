@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<sdf version="1.4">
+  <world name="default">
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    
+    <model name="field">
+      <pose>0 0 0.01  0 0 0</pose>
+      <static>true</static>
+      <link name="body">
+        <visual name="visual">
+          <geometry>
+            <mesh><uri>model://boldbot_bringup/meshes/rchl_field_kid_2019.dae</uri></mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh><uri>model://boldbot_bringup/meshes/rchl_field_kid_2019.dae</uri></mesh>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+
+    <model name="goal1">
+      <pose>4.5 0 0.01  0 0 0</pose>
+      <static>true</static>
+      <link name="body">
+        <visual name="visual">
+          <geometry>
+            <mesh><uri>model://boldbot_bringup/meshes/rchl_goal_2019.dae</uri></mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh><uri>model://boldbot_bringup/meshes/rchl_goal_2019.dae</uri></mesh>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+
+    <model name="goal2">
+      <pose>-4.5 0 0.01  0 0 3.14159265359</pose>
+      <static>true</static>
+      <link name="body">
+        <visual name="visual">
+          <geometry>
+            <mesh><uri>model://boldbot_bringup/meshes/rchl_goal_2019.dae</uri></mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh><uri>model://boldbot_bringup/meshes/rchl_goal_2019.dae</uri></mesh>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+  </world>
+</sdf>
