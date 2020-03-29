@@ -174,17 +174,20 @@
           </sampler2D>
         </newparam>
         <technique sid="common">
-          <lambert>
+          <phong>
             <emission>
               <color sid="emission">0 0 0 1</color>
             </emission>
             <diffuse>
               <texture texture="rchl_field_kid_2019_jpg-sampler" texcoord="UVMap"/>
             </diffuse>
+            <ambient>
+              <color sid="ambient">0.9098 0.9098 0.9098 1</color>
+            </ambient>
             <index_of_refraction>
               <float sid="ior">1.45</float>
             </index_of_refraction>
-          </lambert>
+          </phong>
         </technique>
       </profile_COMMON>
     </effect>
