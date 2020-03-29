@@ -43,7 +43,7 @@ def generate_launch_description():
                     "-entity",
                     "boldbot",
                     "-x",
-                    "0",
+                    "-1",
                     "-y",
                     "0",
                     "-z",
