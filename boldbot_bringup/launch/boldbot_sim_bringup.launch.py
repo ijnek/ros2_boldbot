@@ -19,6 +19,9 @@ def generate_launch_description():
     urdf_prefix = get_package_share_directory("boldbot_description")
     urdf_file = os.path.join(urdf_prefix, "urdf", "boldbot.urdf")
 
+    world_prefix = get_package_share_directory("boldbot_bringup")
+    world_file = os.path.join(world_prefix, "worlds", "rchl_kid_2019.world")
+
     return LaunchDescription(
         [
             ExecuteProcess(
@@ -28,6 +31,7 @@ def generate_launch_description():
                     "libgazebo_ros_init.so",
                     "-s",
                     "libgazebo_ros_factory.so",
+                    world_file,
                 ],
                 output="screen",
                 additional_env=env,
@@ -39,7 +43,7 @@ def generate_launch_description():
                     "-entity",
                     "boldbot",
                     "-x",
-                    "0",
+                    "-1",
                     "-y",
                     "0",
                     "-z",
