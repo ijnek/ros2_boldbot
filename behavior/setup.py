@@ -9,7 +9,8 @@ setup(
     zip_safe=False,
     py_modules=[
         'look_at_ball',
-        'walk_straight'
+        'walk_straight',
+        'get_up'
     ],
     data_files=[],
     install_requires=['setuptools'],
@@ -21,7 +22,8 @@ setup(
     entry_points={
         'console_scripts': [
             'walk_straight = walk_straight:main',
-            'look_at_ball = look_at_ball:main'
+            'look_at_ball = look_at_ball:main',
+            'get_up = get_up:main'
         ],
     },
 )
