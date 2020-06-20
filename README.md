@@ -9,7 +9,7 @@ This repository provides a suite of packages to work with the BoldBot robot:
 * `boldbot_sim` - configuration and launch files to bring up Gazebo
   with the boldbot and the basic nodes to interact with it.
 * `boldbot_dummy_sensors` - package with simple node to give fake
-  sensor outptut to do some testing without a physical robot.
+  sensor output.
 
 ## Bring up Simulation
 
