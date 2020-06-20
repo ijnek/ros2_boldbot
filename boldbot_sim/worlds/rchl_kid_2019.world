@@ -23,12 +23,12 @@
       <link name="body">
         <visual name="visual">
           <geometry>
-            <mesh><uri>model://boldbot_bringup/meshes/rchl_field_kid_2019.dae</uri></mesh>
+            <mesh><uri>model://boldbot_sim/meshes/rchl_field_kid_2019.dae</uri></mesh>
           </geometry>
         </visual>
         <collision name="collision">
           <geometry>
-            <mesh><uri>model://boldbot_bringup/meshes/rchl_field_kid_2019.dae</uri></mesh>
+            <mesh><uri>model://boldbot_sim/meshes/rchl_field_kid_2019.dae</uri></mesh>
           </geometry>
         </collision>
       </link>
@@ -40,12 +40,12 @@
       <link name="body">
         <visual name="visual">
           <geometry>
-            <mesh><uri>model://boldbot_bringup/meshes/rchl_goal_2019.dae</uri></mesh>
+            <mesh><uri>model://boldbot_sim/meshes/rchl_goal_2019.dae</uri></mesh>
           </geometry>
         </visual>
         <collision name="collision">
           <geometry>
-            <mesh><uri>model://boldbot_bringup/meshes/rchl_goal_2019.dae</uri></mesh>
+            <mesh><uri>model://boldbot_sim/meshes/rchl_goal_2019.dae</uri></mesh>
           </geometry>
         </collision>
       </link>
@@ -57,12 +57,12 @@
       <link name="body">
         <visual name="visual">
           <geometry>
-            <mesh><uri>model://boldbot_bringup/meshes/rchl_goal_2019.dae</uri></mesh>
+            <mesh><uri>model://boldbot_sim/meshes/rchl_goal_2019.dae</uri></mesh>
           </geometry>
         </visual>
         <collision name="collision">
           <geometry>
-            <mesh><uri>model://boldbot_bringup/meshes/rchl_goal_2019.dae</uri></mesh>
+            <mesh><uri>model://boldbot_sim/meshes/rchl_goal_2019.dae</uri></mesh>
           </geometry>
         </collision>
       </link>
@@ -76,7 +76,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
-              <uri>model://boldbot_bringup/meshes/ball.dae</uri>
+              <uri>model://boldbot_sim/meshes/ball.dae</uri>
             </mesh>
           </geometry>
         </visual>
