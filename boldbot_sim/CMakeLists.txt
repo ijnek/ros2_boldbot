@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(boldbot_bringup)
+project(boldbot_sim)
 
 find_package(ament_cmake REQUIRED)
 
-install(DIRECTORY launch config meshes worlds
+install(DIRECTORY launch meshes worlds
   DESTINATION share/${PROJECT_NAME})
 
 if(BUILD_TESTING)
