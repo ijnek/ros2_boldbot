@@ -432,7 +432,7 @@
       <collision>
         <origin xyz="0.013 ${lr * (0.02)} 0" rpy="0 0 0" />
         <geometry>
-          <box size=" 0.14 0.0935 0.012"/>
+          <box size="0.14 0.0935 0.012"/>
         </geometry>
         <!-- <origin xyz="-0.02 ${-lr * 0.01} 0.05" rpy="${pi / 2} 0 ${pi / 2}" /> <!-\- TODO: guessed y offset -\-> -->
         <!-- <geometry> -->
