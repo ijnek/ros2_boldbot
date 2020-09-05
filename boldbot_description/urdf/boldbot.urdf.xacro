@@ -456,6 +456,24 @@
       <maxVel>0.5</maxVel>
       <minDepth>0.002</minDepth>
     </gazebo>
+
+    <joint name="${side}_ankle_sole" type="fixed">
+      <parent link="${side}_ankle" />
+      <child link="${side}_sole" />
+      <origin xyz="0.013 ${lr * (0.02)} ${-0.02 - 0.006}" rpy="0 0 0" />
+    </joint>
+
+    <link name="${side}_sole">
+    </link>
+
+    <joint name="${side}_sole_toe" type="fixed">
+      <parent link="${side}_sole" />
+      <child link="${side}_toe" />
+      <origin xyz="0.07 0 0" rpy="0 0 0" />
+    </joint>
+
+    <link name="${side}_toe">
+    </link>
   </xacro:macro>
 
   <xacro:leg side="l"/>
