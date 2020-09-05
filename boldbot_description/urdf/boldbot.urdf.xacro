@@ -406,31 +406,40 @@
 
     <joint name="ankle-roll-${side}" type="revolute">
       <parent link="mx28-ankle-roll-${side}" />
-      <child link="foot-${side}" />
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <axis xyz="0 0 1" />
+      <child link="${side}_ankle" />
+      <origin xyz="0 0 0.05" rpy="${lr * pi} ${-pi / 2} 0" />
+      <axis xyz="1 0 0" />
       <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
       <dynamics damping="${damping}" friction="${friction}" />
     </joint>
 
+    <link name="${side}_ankle">
+    </link>
+
+    <joint name="${side}_ankle_foot" type="fixed">
+      <parent link="${side}_ankle" />
+      <child link="foot-${side}" />
+      <origin xyz="0 0 -0.02" rpy="0 0 0" />
+    </joint>
+
     <link name="foot-${side}">
       <visual>
-        <origin xyz="-0.02 ${-lr * 0.01} 0.05" rpy="${pi / 2} 0 ${pi / 2}" /> <!-- TODO: guessed y offset -->
+        <origin xyz="0 ${lr * 0.01} 0" rpy="0 0 ${-pi / 2}" /> <!-- TODO: guessed y offset -->
         <geometry>
           <mesh filename="package://boldbot_description/meshes/nicefoot${side}b.stl" scale="0.001 0.001 0.001"/>
         </geometry>
       </visual>
       <collision>
-        <origin xyz="${-0.02} ${-lr * (0.02)} ${0.05 + 0.013}" rpy="0 0 0" />
+        <origin xyz="0.013 ${lr * (0.02)} 0" rpy="0 0 0" />
         <geometry>
-          <box size="0.012 0.0935 0.14"/>
+          <box size=" 0.14 0.0935 0.012"/>
         </geometry>
         <!-- <origin xyz="-0.02 ${-lr * 0.01} 0.05" rpy="${pi / 2} 0 ${pi / 2}" /> <!-\- TODO: guessed y offset -\-> -->
         <!-- <geometry> -->
         <!--   <mesh filename="package://boldbot_description/meshes/nicefoot${side}b.stl" scale="0.001 0.001 0.001"/> -->
         <!-- </geometry> -->
       </collision>
-      <xacro:inertial_cuboid mass="${0.000062433 * filament_density}" xyz="${-0.02 - 0.0023} ${-lr * (0.01 + 0.0065)} ${0.05 + 0.013}" rpy="0 0 0" x_length="0.012" y_length="0.0935" z_length="0.14" />
+      <xacro:inertial_cuboid mass="${0.000062433 * filament_density}" xyz="0.013 ${lr * (0.01 + 0.0065)} -0.0023" rpy="0 0 0" x_length="0.14" y_length="0.0935" z_length="0.012" />
       <!-- <inertial> -->
       <!--   <origin xyz="${-0.02 - 0.0023} ${-lr * (0.01 + 0.0065)} ${0.05 + 0.013}" /> -->
       <!--   <xacro:xmass value="0.1"/> -->
