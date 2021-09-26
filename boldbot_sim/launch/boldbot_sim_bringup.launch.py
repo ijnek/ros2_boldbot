@@ -38,7 +38,7 @@ def generate_launch_description():
             ),
             Node(
                 package="gazebo_ros",
-                node_executable="spawn_entity.py",
+                executable="spawn_entity.py",
                 arguments=[
                     "-entity",
                     "boldbot",
@@ -55,7 +55,7 @@ def generate_launch_description():
             ),
             Node(
                 package="robot_state_publisher",
-                node_executable="robot_state_publisher",
+                executable="robot_state_publisher",
                 output="screen",
                 arguments=[urdf_file],
             ),
