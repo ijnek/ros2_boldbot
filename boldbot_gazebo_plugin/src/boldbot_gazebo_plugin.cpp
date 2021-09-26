@@ -61,7 +61,7 @@ void BoldbotGazeboPlugin::Load(gazebo::physics::ModelPtr model, sdf::ElementPtr 
 
   RCLCPP_DEBUG(ros_node_->get_logger(), "Got joints:");
   for (auto const & j : joints_) {
-    RCLCPP_DEBUG(ros_node_->get_logger(), j.first);
+    RCLCPP_DEBUG(ros_node_->get_logger(), "%s", j.first.c_str());
   }
 
   // Hook into simulation update loop
