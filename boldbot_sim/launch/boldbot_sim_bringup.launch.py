@@ -55,5 +55,23 @@ def generate_launch_description():
                 output='screen',
                 arguments=[urdf_file],
             ),
+            Node(
+                package='ros_ign_bridge',
+                executable='parameter_bridge',
+                arguments=[
+                        # Clock (IGN -> ROS2)
+                        '/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock',
+                        # Joint states (IGN -> ROS2)
+                        '/world/default/model/boldbot/joint_state@sensor_msgs/msg/JointState[ignition.msgs.Model',
+                        # Image (IGN -> ROS2)
+                        '/camera@sensor_msgs/msg/Image@ignition.msgs.Image',
+                        # Imu (IGN -> ROS2)
+                        '/imu@sensor_msgs/msg/Imu@ignition.msgs.IMU',
+                        ],
+                remappings=[
+                    ('/world/default/model/boldbot/joint_state', 'joint_states'),
+                ],
+                output='screen'
+            )
         ]
     )
