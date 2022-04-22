@@ -18,18 +18,9 @@ from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import ExecuteProcess
 from launch_ros.actions import Node
-from scripts import GazeboRosPaths
 
 
 def generate_launch_description():
-    model_path, plugin_path, media_path = GazeboRosPaths.get_paths()
-
-    env = {
-        'GAZEBO_MODEL_PATH': model_path,
-        'GAZEBO_PLUGIN_PATH': plugin_path,
-        'GAZEBO_RESOURCE_PATH': media_path,
-    }
-
     urdf_prefix = get_package_share_directory('boldbot_description')
     urdf_file = os.path.join(urdf_prefix, 'urdf', 'boldbot.urdf')
 
@@ -40,32 +31,23 @@ def generate_launch_description():
         [
             ExecuteProcess(
                 cmd=[
-                    'gazebo',
-                    '-s',
-                    'libgazebo_ros_init.so',
-                    '-s',
-                    'libgazebo_ros_factory.so',
-                    world_file,
+                    'ros2',
+                    'launch',
+                    'ros_ign_gazebo',
+                    'ign_gazebo.launch.py',
+                    'ign_args:='+world_file
                 ],
                 output='screen',
-                additional_env=env,
             ),
-            Node(
-                package='gazebo_ros',
-                executable='spawn_entity.py',
+            Node(package='ros_ign_gazebo', executable='create',
                 arguments=[
-                    '-entity',
-                    'boldbot',
-                    '-x',
-                    '-1',
-                    '-y',
-                    '0',
-                    '-z',
-                    '.41',
-                    '-b',
-                    '-file',
-                    urdf_file,
-                ],
+                    '-name', 'boldbot',
+                    '-topic', 'robot_description',
+                    '-x', '1',
+                    '-y', '0',
+                    '-z', '.41',
+                    ],
+                output='screen',
             ),
             Node(
                 package='robot_state_publisher',
@@ -73,5 +55,23 @@ def generate_launch_description():
                 output='screen',
                 arguments=[urdf_file],
             ),
+            Node(
+                package='ros_ign_bridge',
+                executable='parameter_bridge',
+                arguments=[
+                        # Clock (IGN -> ROS2)
+                        '/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock',
+                        # Joint states (IGN -> ROS2)
+                        '/world/default/model/boldbot/joint_state@sensor_msgs/msg/JointState[ignition.msgs.Model',
+                        # Image (IGN -> ROS2)
+                        '/camera@sensor_msgs/msg/Image@ignition.msgs.Image',
+                        # Imu (IGN -> ROS2)
+                        '/imu@sensor_msgs/msg/Imu@ignition.msgs.IMU',
+                        ],
+                remappings=[
+                    ('/world/default/model/boldbot/joint_state', 'joint_states'),
+                ],
+                output='screen'
+            )
         ]
     )
