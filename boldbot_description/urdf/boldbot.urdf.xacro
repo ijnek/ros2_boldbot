@@ -546,9 +546,4 @@
     </sensor>
   </gazebo>
 
-  <!-- Joint states plugin -->
-  <gazebo>
-    <plugin filename="libignition-gazebo-joint-state-publisher-system.so" name="ignition::gazebo::systems::JointStatePublisher"/>
-  </gazebo>
-
 </robot>
