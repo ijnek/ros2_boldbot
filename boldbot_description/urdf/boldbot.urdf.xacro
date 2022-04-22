@@ -104,15 +104,6 @@
     <dynamics damping="${damping}" friction="${friction}" />
   </joint>
 
-  <gazebo>
-    <plugin filename="libignition-gazebo-joint-position-controller-system.so" name="ignition::gazebo::systems::JointPositionController">
-      <joint_name>head-pan</joint_name>
-      <p_gain>10</p_gain>
-      <i_gain>0.0</i_gain>
-      <d_gain>0.00</d_gain>
-    </plugin>
-  </gazebo>
-
   <link name="neck">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0" />
@@ -143,15 +134,6 @@
     <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
     <dynamics damping="${damping}" friction="${friction}" />
   </joint>
-
-  <gazebo>
-    <plugin filename="libignition-gazebo-joint-position-controller-system.so" name="ignition::gazebo::systems::JointPositionController">
-      <joint_name>head-tilt</joint_name>
-      <p_gain>10</p_gain>
-      <i_gain>0.0</i_gain>
-      <d_gain>0.00</d_gain>
-    </plugin>
-  </gazebo>
 
   <xacro:mx28 name="mx28-head-tilt" x="0" y="0" z="0" rpy="0 0 0"/>
 
@@ -212,15 +194,6 @@
       <dynamics damping="${damping}" friction="${friction}" />
     </joint>
 
-    <gazebo>
-      <plugin filename="libignition-gazebo-joint-position-controller-system.so" name="ignition::gazebo::systems::JointPositionController">
-        <joint_name>shoulder-pitch-${side}</joint_name>
-        <p_gain>10</p_gain>
-        <i_gain>0.0</i_gain>
-        <d_gain>0.00</d_gain>
-      </plugin>
-    </gazebo>
-
     <link name="shoulder-${side}">
       <visual>
         <origin xyz="0 0 0" rpy="${pi / 2} 0 ${pi if side == 'l' else 0}" />
@@ -245,15 +218,6 @@
       <dynamics damping="${damping}" friction="${friction}" />
     </joint>
 
-    <gazebo>
-      <plugin filename="libignition-gazebo-joint-position-controller-system.so" name="ignition::gazebo::systems::JointPositionController">
-        <joint_name>shoulder-roll-${side}</joint_name>
-        <p_gain>10</p_gain>
-        <i_gain>0.0</i_gain>
-        <d_gain>0.00</d_gain>
-      </plugin>
-    </gazebo>
-
     <xacro:mx28 name="mx28-shoulder-roll-${side}" x="0" y="0" z="0" rpy="0 0 0"/>
 
     <joint name="mx28-shoulder-roll-${side}-mx28-elbow-${side}" type="fixed">
@@ -272,15 +236,6 @@
       <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
       <dynamics damping="${damping}" friction="${friction}" />
     </joint>
-
-    <gazebo>
-      <plugin filename="libignition-gazebo-joint-position-controller-system.so" name="ignition::gazebo::systems::JointPositionController">
-        <joint_name>elbow-${side}</joint_name>
-        <p_gain>10</p_gain>
-        <i_gain>0.0</i_gain>
-        <d_gain>0.00</d_gain>
-      </plugin>
-    </gazebo>
 
     <link name="lower-arm-${side}">
       <visual>
@@ -328,15 +283,6 @@
       <dynamics damping="${damping}" friction="${friction}" />
     </joint>
 
-    <gazebo>
-      <plugin filename="libignition-gazebo-joint-position-controller-system.so" name="ignition::gazebo::systems::JointPositionController">
-        <joint_name>hip-yaw-${side}</joint_name>
-        <p_gain>10</p_gain>
-        <i_gain>0.0</i_gain>
-        <d_gain>0.00</d_gain>
-      </plugin>
-    </gazebo>
-
     <link name="hip-bracket-${side}">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
@@ -369,15 +315,6 @@
       <dynamics damping="${damping}" friction="${friction}" />
     </joint>
 
-    <gazebo>
-      <plugin filename="libignition-gazebo-joint-position-controller-system.so" name="ignition::gazebo::systems::JointPositionController">
-        <joint_name>hip-roll-${side}</joint_name>
-        <p_gain>10</p_gain>
-        <i_gain>0.0</i_gain>
-        <d_gain>0.00</d_gain>
-      </plugin>
-    </gazebo>
-
     <xacro:mx28 name="mx28-hip-roll-${side}" x="0" y="0" z="0" rpy="0 0 0"/>
 
     <joint name="mx28-hip-roll-mx28-hip-pitch-${side}" type="fixed">
@@ -397,15 +334,6 @@
       <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
       <dynamics damping="${damping}" friction="${friction}" />
     </joint>
-
-    <gazebo>
-      <plugin filename="libignition-gazebo-joint-position-controller-system.so" name="ignition::gazebo::systems::JointPositionController">
-        <joint_name>hip-pitch-${side}</joint_name>
-        <p_gain>10</p_gain>
-        <i_gain>0.0</i_gain>
-        <d_gain>0.00</d_gain>
-      </plugin>
-    </gazebo>
 
     <link name="upper-leg-${side}">
       <visual>
@@ -445,15 +373,6 @@
       <dynamics damping="${damping}" friction="${friction}" />
     </joint>
 
-    <gazebo>
-      <plugin filename="libignition-gazebo-joint-position-controller-system.so" name="ignition::gazebo::systems::JointPositionController">
-        <joint_name>knee-${side}</joint_name>
-        <p_gain>10</p_gain>
-        <i_gain>0.0</i_gain>
-        <d_gain>0.00</d_gain>
-      </plugin>
-    </gazebo>
-
     <link name="lower-leg-${side}">
       <visual>
         <origin xyz="-0.0175 ${-lr * 0.019} 0" rpy="${lr * pi / 2} 0 ${pi}" />
@@ -484,15 +403,6 @@
       <dynamics damping="${damping}" friction="${friction}" />
     </joint>
 
-    <gazebo>
-      <plugin filename="libignition-gazebo-joint-position-controller-system.so" name="ignition::gazebo::systems::JointPositionController">
-        <joint_name>ankle-pitch-${side}</joint_name>
-        <p_gain>10</p_gain>
-        <i_gain>0.0</i_gain>
-        <d_gain>0.00</d_gain>
-      </plugin>
-    </gazebo>
-
     <xacro:mx28 name="mx28-ankle-pitch-${side}" x="0" y="0" z="0" rpy="0 0 0"/>
 
     <joint name="mx28-ankle-pitch-mx28-ankle-roll-${side}" type="fixed">
@@ -511,15 +421,6 @@
       <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
       <dynamics damping="${damping}" friction="${friction}" />
     </joint>
-
-    <gazebo>
-      <plugin filename="libignition-gazebo-joint-position-controller-system.so" name="ignition::gazebo::systems::JointPositionController">
-        <joint_name>ankle-roll-${side}</joint_name>
-        <p_gain>10</p_gain>
-        <i_gain>0.0</i_gain>
-        <d_gain>0.00</d_gain>
-      </plugin>
-    </gazebo>
 
     <link name="${side}_ankle">
     </link>
@@ -586,6 +487,11 @@
 
   <xacro:leg side="l"/>
   <xacro:leg side="r"/>
+
+  <gazebo>
+    <plugin filename="libBoldbotGazeboPlugin.so" name="boldbot_gazebo_plugin::BoldbotGazeboPlugin">
+    </plugin>
+  </gazebo>
 
   <gazebo reference="head">
     <sensor name='camera' type='camera'>
