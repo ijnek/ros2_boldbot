@@ -14,6 +14,8 @@
 
 #include "boldbot_gazebo_plugin.hpp"
 #include <ignition/plugin/Register.hh>
+#include <sensor_msgs/msg/joint_state.hpp>
+#include <mx_joint_controller_msgs/msg/joint_command.hpp>
 
 IGNITION_ADD_PLUGIN(
   boldbot_gazebo_plugin::BoldbotGazeboPlugin,
@@ -22,16 +24,22 @@ IGNITION_ADD_PLUGIN(
   boldbot_gazebo_plugin::BoldbotGazeboPlugin::ISystemPreUpdate)
 
 using namespace boldbot_gazebo_plugin;
+using JointState = sensor_msgs::msg::JointState;
+using JointCommand = mx_joint_controller_msgs::msg::JointCommand;
 
-BoldbotGazeboPlugin::BoldbotGazeboPlugin() {}
+class boldbot_gazebo_plugin::BoldbotGazeboPluginPrivate
+{};
+
+BoldbotGazeboPlugin::BoldbotGazeboPlugin()
+: dataPtr(std::make_unique<BoldbotGazeboPluginPrivate>()) {}
 void BoldbotGazeboPlugin::Configure(
   const ignition::gazebo::Entity & _entity,
   const std::shared_ptr<const sdf::Element> & _sdf,
   ignition::gazebo::EntityComponentManager & _ecm,
   ignition::gazebo::EventManager & _eventMgr)
 {}
+
 void BoldbotGazeboPlugin::PreUpdate(
   const ignition::gazebo::UpdateInfo & _info,
   ignition::gazebo::EntityComponentManager & _ecm)
 {}
-

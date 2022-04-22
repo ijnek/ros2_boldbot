@@ -8,10 +8,16 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(ignition-gazebo6 REQUIRED)
+find_package(sensor_msgs REQUIRED)
+find_package(mx_joint_controller_msgs REQUIRED)
 
 set(plugin_name BoldbotGazeboPlugin)
 add_library(${plugin_name} SHARED
   src/boldbot_gazebo_plugin.cpp)
+
+ament_target_dependencies(${plugin_name}
+  sensor_msgs
+  mx_joint_controller_msgs)
 
 target_link_libraries(${plugin_name}
   ignition-gazebo6::core)

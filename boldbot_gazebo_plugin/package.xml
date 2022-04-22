@@ -10,6 +10,8 @@
   <buildtool_depend>ament_cmake</buildtool_depend>
 
   <depend>ignition-gazebo6</depend>
+  <depend>sensor_msgs</depend>
+  <depend>mx_joint_controller_msgs</depend>
 
   <export>
     <build_type>ament_cmake</build_type>

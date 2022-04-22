@@ -20,6 +20,8 @@
 namespace boldbot_gazebo_plugin
 {
 
+class BoldbotGazeboPluginPrivate;
+
 class BoldbotGazeboPlugin
   : public ignition::gazebo::System,
   public ignition::gazebo::ISystemConfigure,
@@ -38,6 +40,7 @@ public:
     ignition::gazebo::EntityComponentManager & _ecm) override;
 
 private:
+    private: std::unique_ptr<BoldbotGazeboPluginPrivate> dataPtr;
 };
 
 }  // namespace boldbot_gazebo_plugin
