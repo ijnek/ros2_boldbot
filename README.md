@@ -1,5 +1,9 @@
 # This is an unofficial fork of https://gitlab.com/boldhearts/ros2_boldbot
 
+[![Build and Test (humble)](../../actions/workflows/build_and_test_humble.yaml/badge.svg?branch=rolling)](../../actions/workflows/build_and_test_humble.yaml?query=branch:rolling)
+[![Build and Test (iron)](../../actions/workflows/build_and_test_iron.yaml/badge.svg?branch=rolling)](../../actions/workflows/build_and_test_iron.yaml?query=branch:rolling)
+[![Build and Test (rolling)](../../actions/workflows/build_and_test_rolling.yaml/badge.svg?branch=rolling)](../../actions/workflows/build_and_test_rolling.yaml?query=branch:rolling)
+
 # BoldBot
 
 This repository provides a suite of packages to work with the BoldBot robot:
@@ -40,11 +44,11 @@ either `torso` or `base_link`.
 ## Use BoldBot model
 
 To see the actual BoldBot model and not just its links, `Add > By
-display type (rviz_default _plugins) > RobotModel`. You then have two options 
+display type (rviz_default _plugins) > RobotModel`. You then have two options
 to display the robot using the `Displays` tab under `RobotModel`:
 
   1. - under `Description Source`: choose `Topic`
      - under `Description Topic` select `/robot_description`, or
-  2. - under `Description Source`: choose `File` 
-     - under `Description File`: select 
-       `install/boldbot_description/share/boldbot_description/urdf/boldbot.urdf` 
+  2. - under `Description Source`: choose `File`
+     - under `Description File`: select
+       `install/boldbot_description/share/boldbot_description/urdf/boldbot.urdf`
